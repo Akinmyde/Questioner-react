@@ -1,0 +1,40 @@
+{
+  "name": "Questioner-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akinmyde/Questioner-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akinmyde/Questioner-react/issues"
+  },
+  "homepage": "https://github.com/Akinmyde/Questioner-react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "react-hot-loader": "^4.8.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}
