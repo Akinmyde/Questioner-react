@@ -5,10 +5,16 @@
   "main": "app.js",
   "scripts": {
     "test:unit": "mocha test/**/*.test.jsx --require @babel/register --exit",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --config ./webpack.config.js --open --mode development",
     "build": "webpack --mode production",
     "test": "jest",
     "coveralls": "jest --env=jsdom --coverage"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/setupTests.js",
+      "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/src/setupTests.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -50,6 +56,8 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^5.0.0"
