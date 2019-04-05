@@ -307,8 +307,8 @@ a {
 #banner {
   background-size: cover;
   margin: 0;
-  height: 600px;
-  background-image: linear-gradient(to right, rgb(0, 0, 0,0.7), rgb(0, 0, 255,0.7)), url(../image/bgimage.jpeg);
+  height: 680px;
+  background-image: linear-gradient(to right, rgb(0, 0, 0,0.7), rgb(0, 0, 255,0.7)), url(../public/images/bgimage.jpeg);
   display: flex;
   justify-content: center;
   align-items: center;

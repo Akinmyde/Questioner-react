@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -20,6 +21,15 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(css)$/,
+        use: ['style-loader', 'css-loader'],
+        enforce: 'pre',
+      },
+      {
+        test: /\.(jpg|png|gif|jpeg)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   resolve: {
@@ -31,6 +41,10 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
+    new HtmlWebPackPlugin({
+      title: 'Questioner App',
+      template: 'public/index.html',
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
