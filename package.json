@@ -14,7 +14,7 @@
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/src/setupTests.js",
       "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/src/setupTests.js",
-      "\\(js|jsx)$": "<rootDir>/src/setupTests.js"
+      "\\.(js|jsx)$": "<rootDir>/src/setupTests.js"
     }
   },
   "repository": {
