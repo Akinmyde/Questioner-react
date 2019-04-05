@@ -33,7 +33,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
+    extensions: ['*', '.js', '.jsx'],
   },
   output: {
     path: path.join(__dirname, 'public'),
