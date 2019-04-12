@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+// eslint-disable-next-line import/extensions
+import App from './App.jsx';
 
 describe('Landing Page', () => {
   it('should render app correctly', () => {
