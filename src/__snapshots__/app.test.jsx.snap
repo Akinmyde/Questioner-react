@@ -25,7 +25,7 @@ exports[`Landing Page should render app correctly 1`] = `
     toastClassName={null}
     transition={[Function]}
   />
-  <p>
+  <div>
     <Header />
     <Switch>
       <Route
@@ -50,6 +50,6 @@ exports[`Landing Page should render app correctly 1`] = `
       />
     </Switch>
     <Footer />
-  </p>
+  </div>
 </Fragment>
 `;

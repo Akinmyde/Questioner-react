@@ -1,54 +1,90 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: ['babel-polyfill', './src/index.jsx'],
+  output: {
+    path: path.join(__dirname, '/dist/'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
+  node: {
+    fs: 'empty',
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'postcss-loader',
+        options: {
+          localIdentName: 'postcss',
+          plugins: () => [
+            autoprefixer({
+              browsers: [
+                '> 1%',
+                'last 2 versions',
+              ],
+            }),
+          ],
         },
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            sourceMap: true,
+            importLoaders: 1,
           },
-        ],
+        },
       },
       {
-        test: /\.(css)$/,
-        use: ['style-loader', 'css-loader'],
-        enforce: 'pre',
+        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: {
+          loader: 'file-loader',
+        },
       },
       {
-        test: /\.(jpg|png|gif|jpeg)$/,
-        use: ['file-loader'],
+        test: /\.(png|svg|gif|jpg|jpeg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 25000,
+            name: 'images/[name].[ext]',
+          },
+        },
       },
     ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/',
-    filename: 'bundle.js',
-  },
   plugins: [
-    new HtmlWebPackPlugin({
-      title: 'Questioner App',
-      template: 'public/index.html',
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: 'index.html',
+      inject: 'body',
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
   ],
-  devServer: {
-    contentBase: './public',
-    hot: true,
-  },
 };
