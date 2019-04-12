@@ -18,7 +18,8 @@
       "./src/setupTests.js"
     ],
     "transform": {
-      "^.+\\.(jsx|js)$": "babel-jest",
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
     },
     "moduleNameMapper": {
