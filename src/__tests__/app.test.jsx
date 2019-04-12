@@ -8,17 +8,3 @@ describe('Landing Page', () => {
     expect(app).toMatchSnapshot();
   });
 });
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from '../App';
-
-// it('renders without crashing', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<App />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// });
-
-
-// "\\.(css|less|sass|scss)$": "<rootDir>/src/setupTests.js",
-// "\\.(js|jsx)$": "<rootDir>/src/setupTests.js"
