@@ -8,3 +8,10 @@ describe('Landing Page', () => {
     expect(app).toMatchSnapshot();
   });
 });
+
+describe('Landing Page', () => {
+  it('should render app correctly', () => {
+    const app = shallow(<App />);
+    expect(app).toMatchSnapshot();
+  });
+});
