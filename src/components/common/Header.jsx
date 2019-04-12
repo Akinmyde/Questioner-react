@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../public/images/new_logo.png';
+import Logo from '../../../public/images/new_logo.png';
 
 const Header = () => (
   <header>
@@ -12,7 +12,7 @@ const Header = () => (
         <Link to="/" />
         <Link to="/meetups">Meetups</Link>
         <Link id="dashboard" to="/user">Dashboard</Link>
-        <Link className="active" id="login" to="login.html">Sign in</Link>
+        <Link className="active" id="login" to="/login">Login</Link>
       </div>
     </div>
   </header>

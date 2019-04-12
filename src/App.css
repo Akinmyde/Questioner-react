@@ -19,14 +19,6 @@ body {
   font-weight: bold;
 }
 
-.upload-btn-wrapper input[type=file] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-
 input[type=email], input[type=password], input[type=text],  input[type=date], textarea {
   width: 100%;
   padding: 12px 20px;
@@ -41,7 +33,7 @@ input[type=email], input[type=password], input[type=text],  input[type=date], te
   background-color: #e99494;
   color: white;
   display: none;
-}
+} */
 
 .closebtn {
   margin-left: 15px;
@@ -54,7 +46,7 @@ input[type=email], input[type=password], input[type=text],  input[type=date], te
   transition: 0.3s;
 }
 
-button {
+button.btn {
   background-color: blue;
   color: white;
   padding: 8px;
@@ -261,7 +253,6 @@ footer {
   box-shadow: 0 0 4px 2px #e1e1e1;
 }
 
-/* Style the header links */
 .header a {
   float: left;
   text-align: center;
@@ -276,12 +267,10 @@ a {
   text-decoration: none;
 }
 
-/* Style the logo link  */ 
 .logo {
   padding: 0 !important;
 }
 
-/* Change the background color on mouse-over */
 
 .header a:hover {
   background-color: #ddd;
@@ -292,13 +281,11 @@ a {
   background-color: white;
 }
 
-/* Style the active/current link*/
 .header a.active {
   background-color: blue;
   color: white;
 }
 
-/* Float the link section to the right */
 .header-right {
   float: right;
   display: block;
