@@ -7,7 +7,7 @@
     "test:unit": "mocha test/**/*.test.jsx --require @babel/register --exit",
     "start": "webpack-dev-server --config ./webpack.config.js --open --mode development",
     "build": "webpack --mode production",
-    "test": "jest",
+    "test": "jest --update-snapshot",
     "coveralls": "jest --env=jsdom --coverage"
   },
   "jest": {

@@ -25,7 +25,7 @@ exports[`Landing Page should render app correctly 1`] = `
     toastClassName={null}
     transition={[Function]}
   />
-  <div>
+  <p>
     <Header />
     <Switch>
       <Route
@@ -50,60 +50,6 @@ exports[`Landing Page should render app correctly 1`] = `
       />
     </Switch>
     <Footer />
-  </div>
-</Fragment>
-`;
-
-exports[`Landing Page should render app correctly 2`] = `
-<Fragment>
-  <ToastContainer
-    autoClose={5000}
-    bodyClassName={null}
-    className={null}
-    closeButton={
-      <CloseButton
-        ariaLabel="close"
-      />
-    }
-    closeOnClick={true}
-    draggable={true}
-    draggablePercent={80}
-    hideProgressBar={false}
-    newestOnTop={false}
-    pauseOnHover={true}
-    pauseOnVisibilityChange={true}
-    position="top-right"
-    progressClassName={null}
-    rtl={false}
-    style={null}
-    toastClassName={null}
-    transition={[Function]}
-  />
-  <div>
-    <Header />
-    <Switch>
-      <Route
-        component={[Function]}
-        path="/login"
-      />
-      <Route
-        component={[Function]}
-        path="/signup"
-      />
-      <Route
-        component="not-found"
-        path="/not-found"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/"
-      />
-      <Redirect
-        to="/not-found"
-      />
-    </Switch>
-    <Footer />
-  </div>
+  </p>
 </Fragment>
 `;
