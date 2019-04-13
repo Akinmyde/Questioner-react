@@ -25,7 +25,14 @@
     "moduleNameMapper": {
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
       "\\.(gif|ttf|eot|svg|png|jpg|jpeg)$": "<rootDir>/src/setupTests.js",
-      "moduleFileExtensions": ["jsx", "js", "json", "ts", "tsx", "node"]
+      "moduleFileExtensions": [
+        "jsx",
+        "js",
+        "json",
+        "ts",
+        "tsx",
+        "node"
+      ]
     }
   },
   "repository": {
@@ -77,6 +84,7 @@
     "enzyme-to-json": "^3.3.5",
     "jest-css-modules": "^2.0.0",
     "joi-browser": "^13.4.0",
+    "jwt-decode": "^2.2.0",
     "mini-css-extract-plugin": "^0.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",

@@ -3,30 +3,31 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Input from './common/Input';
 import Button from './common/Button';
+import Loader from './common/Loader';
 import validate from '../helpers/validator';
 import loginSchema from '../schema/loginSchema';
-import userService from './services/userService';
+import { login } from './services/authService';
 import exceptionHandler from '../helpers/exceptionHandler';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { account: { email: '', password: '' } };
+    this.state = { account: { email: '', password: '' }, loading: false };
   }
 
   render() {
-    const { account: userAcount } = this.state;
+    const { account: userAcount, loading } = this.state;
     const { email, password } = userAcount;
 
     const doSumbit = async () => {
       // call the server
+      this.setState({ loading: true });
       try {
-        const { data: result } = await userService.login(userAcount);
-        const { data } = result;
-        toast.success('Welcome');
-        return console.log(data[0]);
+        await login({ username: email, password });
       } catch (ex) {
-        return exceptionHandler(ex);
+        exceptionHandler(ex);
+      } finally {
+        this.setState({ loading: false });
       }
     };
 
@@ -35,18 +36,20 @@ class Login extends Component {
       e.preventDefault();
       const error = validate(userAcount, loginSchema);
       if (error) return toast.error(error);
-
-      doSumbit();
-      return console.log(this.state);
+      return doSumbit();
     };
+
     const hanleChange = ({ currentTarget: input }) => {
       const account = { ...userAcount };
       account[input.id] = input.value;
       this.setState({ account });
     };
 
+    // const { loading } = this.state;
+
     return (
       <React.Fragment>
+        {loading && <Loader />}
         <div className="container">
           <div className="imgcontainer">
             <i className="fas fa-user-circle fa-5x" />

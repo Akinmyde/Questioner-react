@@ -6,7 +6,6 @@ const schema = {
     .email({ minDomainAtoms: 2 })
     .label('Email'),
   password: Joi.string()
-    .min(8)
     .required()
     .label('Password'),
 };

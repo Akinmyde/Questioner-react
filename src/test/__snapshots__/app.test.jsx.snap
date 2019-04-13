@@ -26,7 +26,9 @@ exports[`Landing Page should render app correctly 1`] = `
     transition={[Function]}
   />
   <div>
-    <Header />
+    <Header
+      userId={null}
+    />
     <Switch>
       <Route
         component={[Function]}
@@ -35,6 +37,14 @@ exports[`Landing Page should render app correctly 1`] = `
       <Route
         component={[Function]}
         path="/signup"
+      />
+      <Route
+        component={[Function]}
+        path="/logout"
+      />
+      <Route
+        component=""
+        path="/dashboard"
       />
       <Route
         component="not-found"
