@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page should render login correctly 1`] = `
+<Fragment>
+  <div
+    className="container"
+  >
+    <div
+      className="imgcontainer"
+    >
+      <i
+        className="fas fa-user-circle fa-5x"
+      />
+    </div>
+    <Input
+      autoFocus="autoFocus"
+      id="email"
+      label="Email"
+      onChange={[Function]}
+      placeholder="johndeo@gmail.com"
+      required="required"
+      type="email"
+      value=""
+    />
+    <Input
+      autoFocus=""
+      id="password"
+      label="Password"
+      onChange={[Function]}
+      placeholder="password"
+      required="required"
+      type="password"
+      value=""
+    />
+    <div
+      className="right font12"
+    >
+      <Link
+        to="/forget"
+      >
+        Forget Password
+      </Link>
+    </div>
+    <Button
+      id="login"
+      onClick={[Function]}
+      value="Login"
+    />
+    <div
+      className="center font12"
+    >
+      Don't have an account?
+       
+      <Link
+        to="/signup"
+      >
+        Sign up
+      </Link>
+    </div>
+    <div
+      className="error font12"
+    />
+  </div>
+</Fragment>
+`;

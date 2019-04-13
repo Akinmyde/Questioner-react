@@ -7,14 +7,32 @@
     "test:unit": "mocha test/**/*.test.jsx --require @babel/register --exit",
     "start": "webpack-dev-server --config ./webpack.config.js --open --mode development",
     "build": "webpack --mode production",
-    "test": "jest",
+    "test": "jest --update-snapshot",
     "coveralls": "jest --env=jsdom --coverage"
   },
   "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+    },
     "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": "<rootDir>/src/setupTests.js",
-      "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/src/setupTests.js",
-      "\\.(js|jsx)$": "<rootDir>/src/setupTests.js"
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
+      "\\.(gif|ttf|eot|svg|png|jpg|jpeg)$": "<rootDir>/src/setupTests.js",
+      "moduleFileExtensions": [
+        "jsx",
+        "js",
+        "json",
+        "ts",
+        "tsx",
+        "node"
+      ]
     }
   },
   "repository": {
@@ -47,9 +65,10 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.5.0",
+    "jest-transform-css": "^2.0.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
-    "prop-types": "^15.7.2",
+    "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.8.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
@@ -57,10 +76,21 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5",
+    "jest-css-modules": "^2.0.0",
+    "joi-browser": "^13.4.0",
+    "jwt-decode": "^2.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-toastify": "^4.1.0",
+    "url-loader": "^1.1.2"
   }
 }

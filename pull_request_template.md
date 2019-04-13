@@ -1,24 +1,20 @@
 #### Description
 
+#### Type of change
 
- #### Description of Task to be completed?	#### Type of change
-
-
- #### How should this be manually tested?	- [ ]
+- [ ]
 - [ ]
 
- #### Any background context you want to provide?	#### How Has This Been Tested?
+#### How Has This Been Tested?
 
+- [ ] Unit testing
 
- #### What are the relevant pivotal tracker stories?	- [ ] Unit testing
+#### Checklist:
 
+#### PT-ID
 
- #### Checklist:
+[](url)
 
+#### Screenshots
 
- #### PT-ID
-
- [](url)
-
-
- #### Screenshots	#### Screenshots
+#### Questions:
