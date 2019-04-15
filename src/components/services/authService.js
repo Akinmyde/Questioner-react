@@ -31,10 +31,28 @@ const logout = () => {
   window.location = '/';
 };
 
-const getCurrentUser = () => {
+const decodeToken = () => {
   try {
     const token = getTokenKey();
-    const { id: userId } = jwtDecode(token);
+    return jwtDecode(token);
+  } catch (ex) { return null; }
+};
+
+const checkIsAdmin = () => {
+  let isAdmin;
+  const decodedToken = decodeToken();
+  if (!decodedToken) {
+    isAdmin = false;
+  } else {
+    // eslint-disable-next-line prefer-destructuring
+    isAdmin = decodedToken.isAdmin;
+  }
+  return isAdmin;
+};
+
+const getCurrentUser = () => {
+  try {
+    const { id: userId } = decodeToken();
     return userId;
   } catch (ex) { return null; }
 };
@@ -44,5 +62,7 @@ export {
   login,
   logout,
   getTokenKey,
+  decodeToken,
+  checkIsAdmin,
   getCurrentUser,
 };
