@@ -433,6 +433,12 @@ a {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  #banner {
+    height: 800 !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .show-menu, .hide-menu {
     padding: 12px !important;

@@ -7,6 +7,7 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Logout from './components/common/Logout';
 import HomePage from './components/HomePage';
+import Meetups from './components/Meetups';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,6 +35,8 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/meetups/:id" component={null} />
+            <Route path="/meetups" component={Meetups} />
             <Route path="/logout" component={Logout} />
             <Route path="/dashboard" component="" />
             <Route path="/not-found" component="not-found" />
