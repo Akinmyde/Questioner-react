@@ -5,6 +5,7 @@ import Loader from './common/Loader';
 import validate from '../helpers/validator';
 import questionSchema from '../schema/questionSchema';
 import { getSingleMeetup, getMeetupQuestions } from './services/meetupService';
+import { upVote } from './services/voteServices';
 import { addQuestion } from './services/questionServices';
 import exceptionHandler from '../helpers/exceptionHandler';
 import Button from './common/Button';
@@ -67,6 +68,26 @@ class SingleMeetup extends Component {
     this.setState({ showQuestionForm: false });
   };
 
+  updateQuestions = (question) => {
+    const { questions: currentQuestion } = this.state;
+    const newQuestions = currentQuestion.filter(x => x.id !== question.id);
+    const questions = [question, ...newQuestions];
+    this.setState({ questions });
+  }
+
+  upVote = async (id) => {
+    this.setState({ loading: true });
+    try {
+      const question = await upVote(id);
+      this.updateQuestions(question);
+      toast.success('you have successfully up voted this question');
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
   render() {
     const {
       meetup, loading, questions, showQuestionForm, form,
@@ -113,7 +134,7 @@ class SingleMeetup extends Component {
                 <ul className="details">
                   <li>{new Date(question.createdon).toDateString()}</li>
                   <li>
-                    <Link className="upvote" to="/">
+                  <Link className="upvote" to={`/meetups/${meetup.id}`} onClick={() => { this.upVote(question.id); }}>
                       <i className="fas fa-thumbs-up" />
                       <span className="num" />
                       {question.upvotes}
