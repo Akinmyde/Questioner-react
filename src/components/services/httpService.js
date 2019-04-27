@@ -9,5 +9,6 @@ export default {
   post: axios.post,
   delete: axios.delete,
   put: axios.delete,
+  patch: axios.patch,
   setTokenKey,
 };
