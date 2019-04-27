@@ -9,4 +9,20 @@ const getAllMeetups = async () => {
   return data;
 };
 
-export { getAllMeetups };
+const getSingleMeetup = async (id) => {
+  const { data: result } = await http.get(`${url}/${id}`);
+  const { data } = result;
+  return data;
+};
+
+const getMeetupQuestions = async (id) => {
+  const { data: result } = await http.get(`${url}/${id}/questions`);
+  const { data } = result;
+  return data;
+};
+
+export {
+  getAllMeetups,
+  getSingleMeetup,
+  getMeetupQuestions,
+};

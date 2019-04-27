@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from './common/Card';
+import { Link } from 'react-router-dom';
 import { checkIsAdmin } from './services/authService';
 import { getAllMeetups } from './services/meetupService';
 import Loader from './common/Loader';
@@ -26,21 +26,29 @@ class Meetups extends Component {
 
   render() {
     const { meetups, isAdmin, loading } = this.state;
-
     return (
       <React.Fragment>
         {loading && <Loader />}
         <div className="flex meetup-card">
           {meetups.map(meetup => (
-            <Card
-              key={meetup.id}
-              id={meetup.id}
-              location={meetup.location}
-              date={new Date(meetup.happeningon).toDateString()}
-              title={meetup.topic}
-              imageUrl={meetup.images[0]}
-              isAdmin={isAdmin}
-            />
+            <div className="meetup-link" key={meetup.id}>
+              <div>
+                <img className="image" src={meetup.images[0]} alt="logo" />
+                <h4><Link className="meetup-link" to={`meetups/${meetup.id}`}>{meetup.topic}</Link></h4>
+                <h6>{meetup.location}</h6>
+                <span className="text-holder">
+                  <ul className="details">
+                    <li>{new Date(meetup.happeningon).toDateString()}</li>
+                    {isAdmin && (
+                      <React.Fragment>
+                        <li title="delete"><Link to="/meetups" className="delete"><i className="fas fa-trash" /></Link></li>
+                        <li title="edit"><Link to="/meetups" className="edit"><i className="fas fa-edit" /></Link></li>
+                      </React.Fragment>
+                    )}
+                  </ul>
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </React.Fragment>

@@ -46,7 +46,7 @@ input[type=email], input[type=password], input[type=text],  input[type=date], te
   transition: 0.3s;
 }
 
-button.btn {
+.btn {
   background-color: blue;
   color: white;
   padding: 8px;
