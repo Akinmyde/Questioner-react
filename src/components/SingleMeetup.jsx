@@ -5,7 +5,7 @@ import Loader from './common/Loader';
 import validate from '../helpers/validator';
 import questionSchema from '../schema/questionSchema';
 import { getSingleMeetup, getMeetupQuestions } from './services/meetupService';
-import { upVote } from './services/voteServices';
+import { upVote, downVote } from './services/voteServices';
 import { addQuestion } from './services/questionServices';
 import exceptionHandler from '../helpers/exceptionHandler';
 import Button from './common/Button';
@@ -88,6 +88,19 @@ class SingleMeetup extends Component {
     }
   };
 
+  downVote = async (id) => {
+    this.setState({ loading: true });
+    try {
+      const question = await downVote(id);
+      this.updateQuestions(question);
+      toast.success('you have successfully down voted this question');
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
+
   render() {
     const {
       meetup, loading, questions, showQuestionForm, form,
@@ -135,13 +148,13 @@ class SingleMeetup extends Component {
                   <li>{new Date(question.createdon).toDateString()}</li>
                   <li>
                   <Link className="upvote" to={`/meetups/${meetup.id}`} onClick={() => { this.upVote(question.id); }}>
-                      <i className="fas fa-thumbs-up" />
-                      <span className="num" />
-                      {question.upvotes}
-                    </Link>
+                    <i className="fas fa-thumbs-up" />
+                    <span className="num" />
+                    {question.upvotes}
+                  </Link>
                   </li>
                   <li>
-                    <Link className="downvote" to="/">
+                    <Link className="downvote" to={`/meetups/${meetup.id}`} onClick={() => { this.downVote(question.id); }}>
                       <i className="fas fa-thumbs-down" />
                       <span className="num">{question.downvotes}</span>
                     </Link>
