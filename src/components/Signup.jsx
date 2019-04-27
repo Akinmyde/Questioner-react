@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import toast from 'react-toastify';
+import { toast } from 'react-toastify';
 import Loader from './common/Loader';
 import Input from './common/Input';
 import Button from './common/Button';

@@ -20,5 +20,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-    }
+    },
+    "extends": "airbnb",
+    "parser": "babel-eslint"
 };

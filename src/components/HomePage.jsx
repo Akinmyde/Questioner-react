@@ -6,7 +6,7 @@ const HomePage = () => (
     <div>
       <h1>Welcome to Questioner App</h1>
       <div className="banner-button">
-        <Link className="md" to="/login">Get Started</Link>
+        <Link className="md" to="/meetups">Get Started</Link>
       </div>
     </div>
   </div>
