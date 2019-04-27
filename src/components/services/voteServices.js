@@ -9,6 +9,13 @@ const upVote = async (id) => {
   return data[0];
 };
 
+const downVote = async (id) => {
+  const { data: result } = await http.patch(`${url}/${id}/downvote`);
+  const { data } = result;
+  return data[0];
+};
+
 export {
   upVote,
+  downVote
 };
