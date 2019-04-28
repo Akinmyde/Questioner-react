@@ -8,6 +8,7 @@ import Footer from './components/common/Footer';
 import Logout from './components/common/Logout';
 import SingleMeetup from './components/SingleMeetup';
 import HomePage from './components/HomePage';
+import Dashboard from './components/Dashboard';
 import Meetups from './components/Meetups';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -40,7 +41,7 @@ class App extends Component {
             <Route path="/meetups/:id" component={SingleMeetup} />
             <Route path="/meetups" component={Meetups} />
             <Route path="/logout" component={Logout} />
-            <Route path="/dashboard" component="" />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/not-found" component="not-found" />
             <Route path="/" exact component={HomePage} />
             <Redirect to="/not-found" />
