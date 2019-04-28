@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Loader from './common/Loader';
 import validate from '../helpers/validator';
 import questionSchema from '../schema/questionSchema';
-import { getSingleMeetup, getMeetupQuestions } from './services/meetupService';
+import { getSingleMeetup, getMeetupQuestions, rsvps } from './services/meetupService';
 import { upVote, downVote } from './services/voteServices';
 import { addQuestion } from './services/questionServices';
 import exceptionHandler from '../helpers/exceptionHandler';
@@ -101,6 +101,18 @@ class SingleMeetup extends Component {
     }
   }
 
+  rsvp = async (id, response) => {
+    this.setState({ loading: true });
+    try {
+      await rsvps(id, { response });
+      toast.success(`you responded with ${response} to this meetup`);
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
+
   render() {
     const {
       meetup, loading, questions, showQuestionForm, form,
@@ -118,9 +130,9 @@ class SingleMeetup extends Component {
             <h6 className="font12">{`@${meetup.location}`}</h6>
             <h4>
               RSVP
-              <Link title="yes" id="yes" className="rsvp" to={`/meetup/${meetup.id}`}><i className="fas fa-check" /></Link>
-              <Link title="no" id="no" className="rsvp" to={`/meetup/${meetup.id}`}><i className="fas fa-times" /></Link>
-              <Link title="maybe" id="maybe" className="rsvp" to={`/meetup/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
+              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
+              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
+              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
             </h4>
             <span className="text-holder">
               <ul className="details font12">
