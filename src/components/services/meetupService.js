@@ -21,8 +21,15 @@ const getMeetupQuestions = async (id) => {
   return data;
 };
 
+const rsvps = async (id, response) => {
+  const { data: result } = await http.post(`${url}/${id}/rsvps`, response);
+  const { data } = result;
+  return data;
+};
+
 export {
   getAllMeetups,
   getSingleMeetup,
   getMeetupQuestions,
+  rsvps,
 };
