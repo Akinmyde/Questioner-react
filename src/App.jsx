@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import 'babel-polyfill';
 import { ToastContainer } from 'react-toastify';
-import { getCurrentUser } from './components/services/authService';
+import { getCurrentUser, checkIsAdmin } from './components/services/authService';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Logout from './components/common/Logout';
@@ -19,16 +19,17 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { isAdmin: false, userId: null };
   }
 
   componentDidMount() {
+    const isAdmin = checkIsAdmin();
     const userId = getCurrentUser();
-    this.setState({ userId });
+    this.setState({ isAdmin, userId });
   }
 
   render() {
-    const { userId } = this.state;
+    const { isAdmin, userId } = this.state;
     return (
       <React.Fragment>
         <ToastContainer />
@@ -41,7 +42,7 @@ class App extends Component {
             <Route path="/meetups/:id" component={SingleMeetup} />
             <Route path="/meetups" component={Meetups} />
             <Route path="/logout" component={Logout} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/dashboard" render={(props) => <Dashboard {...props} isAdmin={isAdmin} />} />
             <Route path="/not-found" component="not-found" />
             <Route path="/" exact component={HomePage} />
             <Redirect to="/not-found" />
