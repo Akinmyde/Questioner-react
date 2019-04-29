@@ -39,13 +39,11 @@ const decodeToken = () => {
 };
 
 const checkIsAdmin = () => {
-  let isAdmin;
+  let isAdmin = false;
   const decodedToken = decodeToken();
-  if (!decodedToken) {
-    isAdmin = false;
-  } else {
-    // eslint-disable-next-line prefer-destructuring
-    isAdmin = decodedToken.isAdmin;
+  if (decodedToken) {
+    const { isAdmin: admin } = decodedToken;
+    isAdmin = admin;
   }
   return isAdmin;
 };

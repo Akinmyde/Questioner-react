@@ -27,15 +27,16 @@ class Dashboard extends Component {
     const { isAdmin } = this.props;
     const { analytics, loading } = this.state;
     const { totalComment, totalPost, upcomingMeetups } = analytics;
-    return (
-      <React.Fragment>
-      {loading && <Loader />}
-      <div className="flex">
-        <div><p className="lg font22"><i className="fas fa-user-plus">{`${totalPost} Posts`}</i></p></div>
-        <div><p className="lg font22"><i className="fas fa-comment">{`${totalComment} Comments`}</i></p></div>
-        <div><p className="lg font22"><i className="fas fa-users">{`${upcomingMeetups.length} upcoming meetups`}</i></p></div>
-      </div>
-      <div className="flex full flex-buttom-space">
+    return (!isAdmin
+      ? (
+        <React.Fragment>
+          {loading && <Loader />}
+          <div className="flex">
+            <div><p className="lg font22"><i className="fas fa-user-plus">{`${totalPost} Posts`}</i></p></div>
+            <div><p className="lg font22"><i className="fas fa-comment">{`${totalComment} Comments`}</i></p></div>
+            <div><p className="lg font22"><i className="fas fa-users">{`${upcomingMeetups.length} upcoming meetups`}</i></p></div>
+          </div>
+          <div className="flex full flex-buttom-space">
             {upcomingMeetups.map(meetup => (
               <div className="meetup-link" key={meetup.id}>
                 <div>
@@ -57,8 +58,36 @@ class Dashboard extends Component {
               </div>
             ))}
           </div>
-    </React.Fragment>
-    );
+        </React.Fragment>
+      )
+      : (
+        <React.Fragment>
+          <div className="flex">
+            <div>
+              <p className="lg font22">
+                <i className="fas fa-user-plus"> All Meetups</i>
+                <br />
+                <span id="totalmeetups" />
+              </p>
+            </div>
+            <div>
+              <p className="lg font22">
+                <i className="fas fa-user-plus"> All Comments</i>
+                <br />
+                <span id="totalcomments" />
+              </p>
+            </div>
+            <div>
+              <p className="lg font22">
+                <i className="fas fa-user-plus"> All Questions</i>
+                <br />
+                <span id="totalquestions" />
+              </p>
+            </div>
+          </div>
+        </React.Fragment>
+      )
+    )
   }
 }
  
