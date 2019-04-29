@@ -1,56 +1,40 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import Form from './common/Form';
 import Loader from './common/Loader';
-import Input from './common/Input';
-import Button from './common/Button';
-import validate from '../helpers/validator';
 import signupSchema from '../schema/signupSchema';
-import { register } from './services/authService';
+import { register, getTokenKey } from './services/authService';
 import exceptionHandler from '../helpers/exceptionHandler';
 
-class Signup extends Component {
+class Signup extends Form {
   constructor(props) {
     super(props);
     this.state = {
-      account: {
+      data: {
         username: '', email: '', password: '', confirmPassword: '',
       },
       loading: false,
     };
   }
 
+  schema = { ...signupSchema };
+
+  doSubmit = async () => {
+    const { data } = this.state;
+    this.setState({ loading: true });
+    try {
+      await register(data);
+      window.location = '/';
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
   render() {
-    const { account: userAcount, loading } = this.state;
-    const {
-      username, email, password, confirmPassword,
-    } = userAcount;
-
-    const doSumbit = async () => {
-      // call the server
-      this.setState({ loading: true });
-      try {
-        await register(userAcount);
-      } catch (ex) {
-        exceptionHandler(ex);
-      } finally {
-        this.setState({ loading: false });
-      }
-    };
-
-    const handelClick = (e) => {
-      e.preventDefault();
-      const error = validate(userAcount, signupSchema);
-      if (error) return toast.error(error);
-      return doSumbit();
-    };
-
-    const hanleChange = ({ currentTarget: input }) => {
-      const account = { ...userAcount };
-      account[input.id] = input.value;
-      this.setState({ account });
-    };
-
+    if (getTokenKey()) return <Redirect to="/" />;
+    const { loading } = this.state;
     return (
       <React.Fragment>
         {loading && <Loader />}
@@ -58,52 +42,17 @@ class Signup extends Component {
           <div className="imgcontainer">
             <i className="fas fa-user-circle fa-5x" />
           </div>
-          <Input
-            onChange={hanleChange}
-            autoFocus="autoFocus"
-            value={email}
-            type="email"
-            id="email"
-            label="Email"
-            placeholder="johndeo@gmail.com"
-            required="required"
-          />
-          <Input
-            onChange={hanleChange}
-            value={username}
-            type="text"
-            id="username"
-            label="Username"
-            placeholder="John Deo"
-            required="required"
-          />
-          <Input
-            onChange={hanleChange}
-            value={password}
-            type="password"
-            id="password"
-            label="Password"
-            placeholder="password"
-            required="required"
-          />
-          <Input
-            onChange={hanleChange}
-            value={confirmPassword}
-            type="password"
-            id="confirmPassword"
-            label="Retype Password"
-            placeholder="password"
-            required="required"
-          />
+          {this.renderInput('email', 'Email', 'JohnDoe@gmail.com', 'email')}
+          {this.renderInput('username', 'Username', 'John Doe')}
+          {this.renderInput('password', 'Password', 'password', 'password')}
+          {this.renderInput('confirmPassword', 'Retype Password', 'Confirm Password', 'password')}
           <div className="right font12"><Link to="/forget">Forget Password</Link></div>
-          <Button onClick={handelClick} id="Signup" value="Signup" />
+          {this.renderButton('Signup')}
           <div className="center font12">
             {'Already have an account?'}
             {' '}
             <Link to="/login">Login</Link>
           </div>
-          <br />
-          <div className="error font12" />
         </div>
       </React.Fragment>
     );
