@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import Form from './common/Form';
+import meetupSchema from '../schema/meetupSchema';
+import { createMeetup } from './services/meetupService';
 import { userAnalytics } from './services/userServices';
 import exceptionHandler from '../helpers/exceptionHandler';
 import Loader from './common/Loader';
 
-class Dashboard extends Component {
+class Dashboard extends Form {
   constructor(props) {
     super(props);
-    this.state = { analytics: { totalComment: '', totalPost: '', upcomingMeetups: [] }, loading: false };
+    this.state = { analytics: { totalComment: '', totalPost: '', upcomingMeetups: [] }, data: {}, loading: false };
   }
+
+  schema = { ...meetupSchema };
 
   async componentDidMount() {
     this.setState({ loading: true });
@@ -23,7 +28,20 @@ class Dashboard extends Component {
     }
   }
 
-  render() { 
+  doSubmit = async () => {
+    const { data } = this.state;
+    this.setState({ loading: true });
+    try {
+      const meetup = await createMeetup({ ...data });
+      console.log(meetup);
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
+
+  render() {
     const { isAdmin } = this.props;
     const { analytics, loading } = this.state;
     const { totalComment, totalPost, upcomingMeetups } = analytics;
@@ -85,10 +103,20 @@ class Dashboard extends Component {
               </p>
             </div>
           </div>
+          <div className="container" id="create">
+            {this.renderInput('topic', 'Topic', 'New meetup')}
+            {this.renderInput('location', 'Location', 'Epic tower')}
+            {this.renderInput('happeningOn', 'Happening On', '', 'date')}
+            {this.renderButton('Add Meetup')}
+          </div>
         </React.Fragment>
       )
-    )
+    );
   }
 }
- 
+
+Dashboard.propTypes = {
+  isAdmin: propTypes.bool.isRequired,
+};
+
 export default Dashboard;
