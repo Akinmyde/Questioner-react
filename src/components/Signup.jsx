@@ -24,7 +24,7 @@ class Signup extends Form {
     this.setState({ loading: true });
     try {
       await register(data);
-      window.location = '/';
+      window.location = '/dashboard';
     } catch (ex) {
       exceptionHandler(ex);
     } finally {

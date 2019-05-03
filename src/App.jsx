@@ -11,6 +11,7 @@ import HomePage from './components/HomePage';
 import Dashboard from './components/Dashboard';
 import Meetups from './components/Meetups';
 import Login from './components/Login';
+import ProtectedRoute from './components/common/protectedRoute';
 import Signup from './components/Signup';
 import 'react-toastify/dist/ReactToastify.css';
 import './Loader.css';
@@ -38,11 +39,10 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/meetups/:id" component={SingleMeetup} />
-            <Route path="/meetups/:id" component={SingleMeetup} />
+            <ProtectedRoute path="/meetups/:id" component={SingleMeetup} />
+            <ProtectedRoute path="/dashboard" render={(props) => <Dashboard {...props} isAdmin={isAdmin} />} />
             <Route path="/meetups" component={Meetups} />
             <Route path="/logout" component={Logout} />
-            <Route path="/dashboard" render={(props) => <Dashboard {...props} isAdmin={isAdmin} />} />
             <Route path="/not-found" component="not-found" />
             <Route path="/" exact component={HomePage} />
             <Redirect to="/not-found" />
