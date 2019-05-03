@@ -1,8 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpService';
-import { apiUrl } from '../config/config.json';
 
-const url = `${apiUrl}/auth`;
+const url = '/auth';
 const tokenKey = 'token';
 
 const getTokenKey = () => localStorage.getItem(tokenKey);

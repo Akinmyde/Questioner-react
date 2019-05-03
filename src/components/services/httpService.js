@@ -4,6 +4,8 @@ const setTokenKey = (token) => {
   axios.defaults.headers.common.token = token;
 };
 
+axios.defaults.baseURL = 'https://akinmyde-questioner.herokuapp.com/api/v1';
+
 export default {
   get: axios.get,
   post: axios.post,
