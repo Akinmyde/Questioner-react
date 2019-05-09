@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page should render login correctly 1`] = `
+<div
+  id="banner"
+>
+  <div>
+    <h1>
+      Welcome to Questioner App
+    </h1>
+    <div
+      className="banner-button"
+    >
+      <Link
+        className="md"
+        to="/meetups"
+      >
+        Get Started
+      </Link>
+    </div>
+  </div>
+</div>
+`;

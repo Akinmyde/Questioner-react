@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Page should render login correctly 1`] = `
+exports[`Signup Page should render signup correctly 1`] = `
 <Fragment>
   <div
     className="container"
@@ -23,10 +23,28 @@ exports[`Login Page should render login correctly 1`] = `
     />
     <Input
       autoFocus=""
+      id="username"
+      label="Username"
+      onChange={[Function]}
+      placeholder="John Doe"
+      type="text"
+      value=""
+    />
+    <Input
+      autoFocus=""
       id="password"
       label="Password"
       onChange={[Function]}
       placeholder="password"
+      type="password"
+      value=""
+    />
+    <Input
+      autoFocus=""
+      id="confirmPassword"
+      label="Retype Password"
+      onChange={[Function]}
+      placeholder="Confirm Password"
       type="password"
       value=""
     />
@@ -42,22 +60,19 @@ exports[`Login Page should render login correctly 1`] = `
     <Button
       className="btn"
       onClick={[Function]}
-      value="Login"
+      value="Signup"
     />
     <div
       className="center font12"
     >
-      Don't have an account?
+      Already have an account?
        
       <Link
-        to="/signup"
+        to="/login"
       >
-        Sign up
+        Login
       </Link>
     </div>
-    <div
-      className="error font12"
-    />
   </div>
 </Fragment>
 `;

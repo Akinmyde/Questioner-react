@@ -33,7 +33,6 @@ class Dashboard extends Form {
     this.setState({ loading: true });
     try {
       const meetup = await createMeetup({ ...data });
-      console.log(meetup);
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
