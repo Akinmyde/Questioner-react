@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Meetups Page should render signup correctly 1`] = `
+<Fragment>
+  <div
+    className="flex full no-pad"
+  >
+    <div>
+      <img
+        alt="meetupimage"
+        className="image card-image"
+      />
+      <h4>
+        <Link
+          to="/meetup/undefined"
+        />
+      </h4>
+      <h6
+        className="font12"
+      >
+        @undefined
+      </h6>
+      <h4>
+        RSVP
+        <Link
+          className="rsvp"
+          id="yes"
+          onClick={[Function]}
+          title="yes"
+          to="/meetups/undefined"
+        >
+          <i
+            className="fas fa-check"
+          />
+        </Link>
+        <Link
+          className="rsvp"
+          id="no"
+          onClick={[Function]}
+          title="no"
+          to="/meetups/undefined"
+        >
+          <i
+            className="fas fa-times"
+          />
+        </Link>
+        <Link
+          className="rsvp"
+          id="maybe"
+          onClick={[Function]}
+          title="maybe"
+          to="/meetups/undefined"
+        >
+          <i
+            className="fas fa-not-equal"
+          />
+        </Link>
+      </h4>
+      <span
+        className="text-holder"
+      >
+        <ul
+          className="details font12"
+        >
+          <li>
+            Invalid Date
+          </li>
+          <li>
+            0 Question
+          </li>
+        </ul>
+        <Button
+          className="btn font12 sm"
+          id="add-question"
+          onClick={[Function]}
+          value="Add Question"
+        />
+      </span>
+    </div>
+  </div>
+  <div
+    className="flex full flex-buttom-space"
+    id="questions"
+  />
+</Fragment>
+`;

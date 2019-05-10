@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard Page should match snapshot componentDidMount 1`] = `Promise {}`;
+
+exports[`Dashboard Page should match snapshot doSubmit 1`] = `Promise {}`;
+
+exports[`Dashboard Page should render dashboard correctly 1`] = `
+<Fragment>
+  <Loader />
+  <div
+    className="flex"
+  >
+    <div>
+      <p
+        className="lg font22"
+      >
+        <i
+          className="fas fa-user-plus"
+        >
+           Posts
+        </i>
+      </p>
+    </div>
+    <div>
+      <p
+        className="lg font22"
+      >
+        <i
+          className="fas fa-comment"
+        >
+           Comments
+        </i>
+      </p>
+    </div>
+    <div>
+      <p
+        className="lg font22"
+      >
+        <i
+          className="fas fa-users"
+        >
+          0 upcoming meetups
+        </i>
+      </p>
+    </div>
+  </div>
+  <div
+    className="flex full flex-buttom-space"
+  />
+</Fragment>
+`;

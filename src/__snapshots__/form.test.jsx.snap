@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage component should match snapshot 1`] = `<Form />`;
+
+exports[`HomePage component should match snapshot renderButton 1`] = `
+<Button
+  className="active"
+  onClick={[Function]}
+  value="test"
+/>
+`;
+
+exports[`HomePage component should match snapshot renderInput 1`] = `
+<Input
+  autoFocus=""
+  id="text"
+  label="text"
+  onChange={[Function]}
+  type="text"
+/>
+`;
+
+exports[`HomePage component should match snapshot renderInput 2`] = `
+<Input
+  autoFocus=""
+  id="test1"
+  label="test1"
+  onChange={[Function]}
+  placeholder="password"
+  type="text"
+/>
+`;
+
+exports[`HomePage component should match snapshot renderInput 3`] = `
+<Input
+  autoFocus=""
+  id="test2"
+  label="test2"
+  onChange={[Function]}
+  placeholder="email"
+  type="text"
+/>
+`;

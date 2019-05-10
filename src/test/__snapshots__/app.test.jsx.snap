@@ -38,13 +38,21 @@ exports[`Landing Page should render app correctly 1`] = `
         component={[Function]}
         path="/signup"
       />
+      <ProtectedRoute
+        component={[Function]}
+        path="/meetups/:id"
+      />
+      <ProtectedRoute
+        path="/dashboard"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        path="/meetups"
+      />
       <Route
         component={[Function]}
         path="/logout"
-      />
-      <Route
-        component=""
-        path="/dashboard"
       />
       <Route
         component="not-found"

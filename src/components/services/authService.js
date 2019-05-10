@@ -1,8 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpService';
-import { apiUrl } from '../config/config.json';
 
-const url = `${apiUrl}/auth`;
+const url = '/auth';
 const tokenKey = 'token';
 
 const getTokenKey = () => localStorage.getItem(tokenKey);
@@ -13,7 +12,6 @@ const setToken = (result) => {
   const { data } = result;
   const { token } = data[0];
   localStorage.setItem(tokenKey, token);
-  window.location = '/dashboard';
 };
 
 const register = async (user) => {
