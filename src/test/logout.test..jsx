@@ -16,6 +16,6 @@ describe('HomePage component', () => {
   it('should match snapshot componentDidMount', () => {
     const wrapper = renderer.create(<Logout />);
     const inst = wrapper.getInstance();
-    expect(inst.componentDidMount().logout());
+    expect(inst.componentDidMount());
   });
 });

@@ -10,3 +10,14 @@ exports[`Button Test should render button correctly 1`] = `
   text
 </button>
 `;
+
+exports[`Button Test should render button correctly 2`] = `
+<button
+  className="btn"
+  id="test"
+  onClick={[Function]}
+  type="button"
+>
+  text
+</button>
+`;

@@ -1,7 +1,10 @@
+import 'babel-polyfill';
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Form from '../src/components/common/Form';
+import Input from './components/common/Input';
+import Button from './components/common/Button';
 
 describe('HomePage component', () => {
   it('should match snapshot', () => {

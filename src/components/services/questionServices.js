@@ -8,9 +8,4 @@ const addQuestion = async (questionData) => {
   return data;
 };
 
-const sayName = name => name;
-
-export {
-  addQuestion,
-  sayName,
-};
+export { addQuestion };
