@@ -10,16 +10,15 @@ describe('Login Page', () => {
     expect(app).toMatchSnapshot();
   });
 
-  // it('should match snapshot componentDidMount', () => {
-  //   const wrapper = renderer.create(<Login />);
-  //   const inst = wrapper.getInstance();
-  //   expect(inst.componentDidMount()).toMatchSnapshot();
-  // });
-
   it('should change state', () => {
     const wrapper = shallow(
       <Login />
     );
     expect(wrapper.state('data')).toEqual({ email: '', password: '' });
+  });
+
+  it('should test functions', () => {
+    const wrapper = shallow(<Login />);
+    expect(wrapper.instance().doSubmit()).toMatchSnapshot();
   });
 });

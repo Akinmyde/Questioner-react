@@ -9,5 +9,6 @@ describe('Button Test', () => {
     expect(button).toMatchSnapshot();
     expect(button.hasClass('btn'))
     expect(button.text='text')
+    expect(button.simulate('click')).toMatchSnapshot();
   });
 });

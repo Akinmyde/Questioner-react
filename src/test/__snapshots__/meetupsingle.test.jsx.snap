@@ -84,3 +84,15 @@ exports[`Meetups Page should render signup correctly 1`] = `
   />
 </Fragment>
 `;
+
+exports[`Meetups Page should test functions 1`] = `Promise {}`;
+
+exports[`Meetups Page should test functions 2`] = `undefined`;
+
+exports[`Meetups Page should test functions 3`] = `Promise {}`;
+
+exports[`Meetups Page should test functions 4`] = `Promise {}`;
+
+exports[`Meetups Page should test functions 5`] = `Promise {}`;
+
+exports[`Meetups Page should test functions 6`] = `undefined`;

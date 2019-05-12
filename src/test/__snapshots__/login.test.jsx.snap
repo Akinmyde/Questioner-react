@@ -61,3 +61,5 @@ exports[`Login Page should render login correctly 1`] = `
   </div>
 </Fragment>
 `;
+
+exports[`Login Page should test functions 1`] = `Promise {}`;

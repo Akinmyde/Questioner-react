@@ -8,4 +8,9 @@ describe('Signup Page', () => {
     const signup = shallow(<Signup />);
     expect(signup).toMatchSnapshot();
   });
+
+  it('should test functions', () => {
+    const wrapper = shallow(<Signup />);
+    expect(wrapper.instance().doSubmit()).toMatchSnapshot();
+  });
 });
