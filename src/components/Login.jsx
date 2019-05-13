@@ -21,7 +21,8 @@ class Login extends Form {
       await login({ username: email, password });
       const { location } = this.props;
       const { state } = location;
-      window.location = state ? state.from.pathname : '/';
+      const path = state ? state.from.pathname : '/';
+      this.props.history.push(path);
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
