@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer'
 import SingleMeetup from '../components/SingleMeetup';
+// import validate from '../helpers/validator';
 
 describe('Meetups Page', () => {
   it('should render signup correctly', () => {
@@ -41,5 +42,18 @@ describe('Meetups Page', () => {
     expect(wrapper.instance().downVote(1)).toMatchSnapshot();
     expect(wrapper.instance().rsvp(1, 'yes')).toMatchSnapshot();
     expect(wrapper.instance().updateQuestions(question)).toMatchSnapshot();
+  });
+
+  it('test handle change function', () => {
+    const wrapper = shallow(<SingleMeetup />);
+    const event = { currentTarget: { id: 'title', value: 'prof' } };
+    expect(wrapper.instance().handleChange(event));
+  });
+
+  it('test handle save function', () => {
+    const validate = jest.fn();
+    const wrapper = shallow(<SingleMeetup />);
+    const event = { preventDefault: jest.fn() };
+    expect(wrapper.instance().handleSave(event));
   });
 });
