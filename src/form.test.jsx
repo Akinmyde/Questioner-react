@@ -30,4 +30,15 @@ describe('HomePage component', () => {
     const wrapper = shallow(<Form />);
     expect(wrapper.find('div'));
   });
+
+  it('always renders a div', () => {
+    const wrapper = shallow(<Form />);
+    expect(wrapper.find('div'));
+  });
+
+  it('test handle change function', () => {
+    const wrapper = shallow(<Form />);
+    const event = { currentTarget: { id: 'title', value: 'prof' } };
+    expect(wrapper.instance().handleChange(event));
+  });
 });
