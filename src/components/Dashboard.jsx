@@ -40,6 +40,9 @@ class Dashboard extends Form {
     }
   }
 
+  onDelete = () => {
+    
+  }
   render() {
     const { isAdmin } = this.props;
     const { analytics, loading } = this.state;
