@@ -22,7 +22,7 @@ class Login extends Form {
       const { location } = this.props;
       const { state } = location;
       const path = state ? state.from.pathname : '/';
-      this.props.history.push(path);
+      window.location = path;
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
