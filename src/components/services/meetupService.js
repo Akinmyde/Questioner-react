@@ -26,9 +26,16 @@ const rsvps = async (id, response) => {
   return data;
 };
 
+const deleteMeetup = async (id) => {
+  const { data: result } = await http.delete(`${url}/${id}`);
+  const { data } = result;
+  return data;
+};
+
 export {
   getAllMeetups,
   getSingleMeetup,
   getMeetupQuestions,
   rsvps,
+  deleteMeetup,
 };

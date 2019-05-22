@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { checkIsAdmin } from './services/authService';
-import { getAllMeetups } from './services/meetupService';
+import { getAllMeetups, deleteMeetup } from './services/meetupService';
 import Loader from './common/Loader';
 import exceptionHandler from '../helpers/exceptionHandler';
+import Modal from './common/Modal';
 
 class Meetups extends Component {
   constructor(props) {
     super(props);
-    this.state = { meetups: [], isAdmin: false, loading: false };
+    this.state = { meetups: [], isAdmin: false, loading: false, showModal: false, currentId: null };
   }
 
   async componentDidMount() {
@@ -24,10 +25,35 @@ class Meetups extends Component {
     }
   }
 
+  onDelete = async (id) => {
+    const { meetups } = this.state;
+    try {
+      const newMeetups = meetups.filter(x => x.id !== id) 
+      this.setState({ meetups: newMeetups, showModal: false });
+      await deleteMeetup(id);
+    } catch(ex) {
+      this.setState({ meetups });
+      exceptionHandler(ex);
+    }
+  };
+
+  onDeleteClick = (id) => {
+    this.setState({ showModal: true, currentId: id });
+  }
+
+  onCancel = () => {
+    this.setState({ showModal: false });
+  }
+
   render() {
-    const { meetups, isAdmin, loading } = this.state;
+    const { meetups, isAdmin, loading, showModal, currentId } = this.state;
     return (
       <React.Fragment>
+        {showModal && <Modal
+          message='are you sure you want to delete'
+          onDelete={() => {this.onDelete(currentId)}}
+          onCancel={this.onCancel}
+        /> }
         {loading && <Loader />}
         <div className="flex meetup-card">
           {meetups.map(meetup => (
@@ -41,8 +67,8 @@ class Meetups extends Component {
                     <li>{new Date(meetup.happeningon).toDateString()}</li>
                     {isAdmin && (
                       <React.Fragment>
-                        <li title="delete"><Link to="/meetups" className="delete"><i className="fas fa-trash" /></Link></li>
-                        <li title="edit"><Link to="/meetups" className="edit"><i className="fas fa-edit" /></Link></li>
+                        <li title="delete"><Link onClick={() => {this.onDeleteClick(meetup.id)}} className="delete"><i className="fas fa-trash" /></Link></li>
+                        <li title="edit"><Link className="edit"><i className="fas fa-edit" /></Link></li>
                       </React.Fragment>
                     )}
                   </ul>

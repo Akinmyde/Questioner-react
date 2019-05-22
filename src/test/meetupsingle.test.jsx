@@ -1,9 +1,8 @@
 import 'babel-polyfill';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer'
 import SingleMeetup from '../components/SingleMeetup';
-// import validate from '../helpers/validator';
 
 describe('Meetups Page', () => {
   it('should render signup correctly', () => {
@@ -24,7 +23,7 @@ describe('Meetups Page', () => {
       <SingleMeetup />
     );
   });
-  it('should test functions', () => {
+  it('should test functions updateQuestions', () => {
     const question = {
       body: "qqwe",
       createdby: 2,
@@ -36,12 +35,33 @@ describe('Meetups Page', () => {
       upvotes: 1
     }
     const wrapper = shallow(<SingleMeetup />);
-    expect(wrapper.instance().doSubmit()).toMatchSnapshot();
+    expect(wrapper.instance().componentDidMount());
     expect(wrapper.instance().handleCancel()).toMatchSnapshot();
     expect(wrapper.instance().upVote(1)).toMatchSnapshot();
     expect(wrapper.instance().downVote(1)).toMatchSnapshot();
-    expect(wrapper.instance().rsvp(1, 'yes')).toMatchSnapshot();
-    expect(wrapper.instance().updateQuestions(question)).toMatchSnapshot();
+    expect(wrapper.instance().rsvpUser(1, 'yes')).toMatchSnapshot();
+    expect(wrapper.instance().updateQuestions(question));
+  });
+
+  it('test function submitQuestionForm', () => {
+    const wrapper = shallow(<SingleMeetup />);
+    expect(wrapper.instance().submitQuestionForm());
+  });
+
+  it('should test links', () => {
+    const wrapper = shallow(<SingleMeetup />);
+    const linkYes = wrapper.find('#yes');
+    linkYes.simulate('click');
+    const linkNo = wrapper.find('#no');
+    linkNo.simulate('click');
+    const linkMaybe = wrapper.find('#maybe');
+    linkMaybe.simulate('click');
+  });
+
+  it('should test button', () => {
+    const wrapper = shallow(<SingleMeetup />);
+    const btnAdd = wrapper.find('#add-question');
+    btnAdd.simulate('click');
   });
 
   it('test handle change function', () => {
@@ -54,6 +74,6 @@ describe('Meetups Page', () => {
     const validate = jest.fn();
     const wrapper = shallow(<SingleMeetup />);
     const event = { preventDefault: jest.fn() };
-    expect(wrapper.instance().handleSave(event));
+    expect(wrapper.instance().handleSaveQuestion(event));
   });
 });

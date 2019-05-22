@@ -9,8 +9,7 @@ describe('HomePage component', () => {
   });
 
   it('always renders null', () => {
-    const wrapper = shallow(<Logout />);
-    expect(wrapper.find('null'));
+    const wrapper = shallow(<Logout />).toMatchSnapshot();
   });
 
   it('should match snapshot componentDidMount', () => {
