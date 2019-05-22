@@ -35,13 +35,12 @@ class SingleMeetup extends Component {
   }
 
   handleChange = ({ currentTarget: input }) => {
-    const { form: questionForm } = this.state;
-    const form = { ...questionForm };
+    const { form } = this.state;
     form[input.id] = input.value;
     this.setState({ form });
   };
 
-  doSubmit = async () => {
+  submitQuestionForm = async () => {
     this.setState({ loading: true });
     try {
       const { meetup, form, questions } = this.state;
@@ -56,12 +55,12 @@ class SingleMeetup extends Component {
       this.setState({ loading: false });
     }
   };
-  handleSave = (e) => {
+  handleSaveQuestion = (e) => {
     e.preventDefault();
     const { form } = this.state
     const error = validate(form, questionSchema);
     if (error) return toast.error(error);
-    return this.doSubmit();
+    return this.submitQuestionForm();
   };
 
   handleCancel = () => {
@@ -70,9 +69,9 @@ class SingleMeetup extends Component {
 
   updateQuestions = (question) => {
     const { questions: currentQuestion } = this.state;
-    const newQuestions = currentQuestion.filter(x => x.id !== question.id);
-    const questions = [question, ...newQuestions];
-    this.setState({ questions });
+    const questions = currentQuestion.filter(x => x.id !== question.id);
+    const updatedQuestions = [question, ...questions];
+    this.setState({ questions: updatedQuestions });
   }
 
   upVote = async (id) => {
@@ -101,7 +100,7 @@ class SingleMeetup extends Component {
     }
   }
 
-  rsvp = async (id, response) => {
+  rsvpUser = async (id, response) => {
     this.setState({ loading: true });
     try {
       await rsvps(id, { response });
@@ -130,9 +129,9 @@ class SingleMeetup extends Component {
             <h6 className="font12">{`@${meetup.location}`}</h6>
             <h4>
               RSVP
-              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
-              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
-              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvp(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
+              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
+              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
+              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
             </h4>
             <span className="text-holder">
               <ul className="details font12">
@@ -197,7 +196,7 @@ class SingleMeetup extends Component {
             <label htmlFor="title">Body</label>
             <textarea id="body" cols="54" rows="4" value={body} onChange={this.handleChange} />
             <div className="center">
-              <Button className="btn font12 sm" id="btnsave" onClick={this.handleSave} value="Save" />
+              <Button className="btn font12 sm" id="btnsave" onClick={this.handleSaveQuestion} value="Save" />
               {' '}
               <Button className="btn font12 sm" id="btncancel" onClick={this.handleCancel} value="Cancel" />
             </div>

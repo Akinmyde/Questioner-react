@@ -4,6 +4,7 @@ exports[`HomePage component should match snapshot 1`] = `
 <ProtectedRoute
   component={[Function]}
   path="/meetups/:id"
+  render={[Function]}
 />
 `;
 

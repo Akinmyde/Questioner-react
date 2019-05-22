@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Meetups Page should match snapshot componentDidMount 1`] = `Promise {}`;
-
 exports[`Meetups Page should render signup correctly 1`] = `
 <Fragment>
   <Loader />

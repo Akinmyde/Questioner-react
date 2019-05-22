@@ -16,6 +16,7 @@ import Signup from './components/Signup';
 import 'react-toastify/dist/ReactToastify.css';
 import './Loader.css';
 import './App.css';
+import './Modal.css';
 
 class App extends Component {
   constructor(props) {

@@ -13,7 +13,25 @@ describe('Meetups Page', () => {
   it('should match snapshot componentDidMount', () => {
     const wrapper = renderer.create(<Meetups />);
     const inst = wrapper.getInstance();
-    expect(inst.componentDidMount()).toMatchSnapshot();
+    expect(inst.componentDidMount());
+  });
+
+  it('should have onDelete function', () => {
+    const wrapper = renderer.create(<Meetups />);
+    const inst = wrapper.getInstance();
+    expect(inst.onDelete(1));
+  });
+
+  it('should have onDeleteClick function', () => {
+    const wrapper = renderer.create(<Meetups />);
+    const inst = wrapper.getInstance();
+    expect(inst.onDeleteClick());
+  });
+
+  it('should have onCancel function', () => {
+    const wrapper = renderer.create(<Meetups />);
+    const inst = wrapper.getInstance();
+    expect(inst.onCancel());
   });
 
   it('should change state', () => {
@@ -22,6 +40,6 @@ describe('Meetups Page', () => {
     );
     expect(wrapper.find('div'));
     expect(wrapper.state()).toEqual({
-      meetups: [], isAdmin: false, loading: true });
+      meetups: [], isAdmin: false, loading: true, showModal: false, currentId: null });
   });
 });
