@@ -1,10 +1,12 @@
 import 'babel-polyfill';
 import React from 'react';
 import { shallow } from 'enzyme';
+import Joi from 'joi-browser';
 import renderer from 'react-test-renderer';
-import Form from '../src/components/common/Form';
-import Input from './components/common/Input';
-import Button from './components/common/Button';
+import Form from '../components/common/Form';
+import Input from '../components/common/Input';
+import Button from '../components/common/Button';
+import validate from '../helpers/validator';
 
 describe('HomePage component', () => {
   it('should match snapshot', () => {

@@ -124,23 +124,23 @@ class SingleMeetup extends Component {
         {loading && <Loader />}
         <div className="flex full no-pad">
           <div>
-            <img className="image card-image" src={meetup.images} alt="meetupimage" />
-            <h4><Link to={`/meetup/${meetup.id}`}>{meetup.topic}</Link></h4>
+            <img className="image-lg card-image" src={meetup.images} alt="meetupimage" />
+            <h4><Link className="topic" to={`/meetup/${meetup.id}`}>{meetup.topic}</Link></h4>
             <h6 className="font12">{`@${meetup.location}`}</h6>
-            <h4>
-              RSVP
-              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
-              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
-              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
-            </h4>
             <span className="text-holder">
               <ul className="details font12">
                 <li>{new Date(meetup.happeningon).toDateString()}</li>
                 {questionLength > 1 && <li>{`${questionLength} Questions`}</li>}
                 {questionLength <= 1 && <li>{`${questionLength} Question`}</li>}
               </ul>
-              <Button onClick={() => { this.setState({ showQuestionForm: true }); }} className="btn font12 sm" id="add-question" value="Add Question" />
+              <Button onClick={() => { this.setState({ showQuestionForm: true }); }} className="btn font12 sm" id="add-question" value="Ask Question" />
             </span>
+            <h4>
+              RSVP
+              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
+              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
+              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
+            </h4>
           </div>
         </div>
         {!showQuestionForm && (

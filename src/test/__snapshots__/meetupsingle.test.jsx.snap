@@ -8,10 +8,11 @@ exports[`Meetups Page should render signup correctly 1`] = `
     <div>
       <img
         alt="meetupimage"
-        className="image card-image"
+        className="image-lg card-image"
       />
       <h4>
         <Link
+          className="topic"
           to="/meetup/undefined"
         />
       </h4>
@@ -20,6 +21,26 @@ exports[`Meetups Page should render signup correctly 1`] = `
       >
         @undefined
       </h6>
+      <span
+        className="text-holder"
+      >
+        <ul
+          className="details font12"
+        >
+          <li>
+            Invalid Date
+          </li>
+          <li>
+            0 Question
+          </li>
+        </ul>
+        <Button
+          className="btn font12 sm"
+          id="add-question"
+          onClick={[Function]}
+          value="Ask Question"
+        />
+      </span>
       <h4>
         RSVP
         <Link
@@ -56,26 +77,6 @@ exports[`Meetups Page should render signup correctly 1`] = `
           />
         </Link>
       </h4>
-      <span
-        className="text-holder"
-      >
-        <ul
-          className="details font12"
-        >
-          <li>
-            Invalid Date
-          </li>
-          <li>
-            0 Question
-          </li>
-        </ul>
-        <Button
-          className="btn font12 sm"
-          id="add-question"
-          onClick={[Function]}
-          value="Add Question"
-        />
-      </span>
     </div>
   </div>
   <div
