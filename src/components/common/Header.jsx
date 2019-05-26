@@ -9,12 +9,14 @@ class Header extends Component {
     this.state = { className: 'fas fa-bars', showMenu: false };
   }
 
-  toggleMenu = () => {
+  toggleMenu = e => {
     let className;
+    let showMenu;
     if (this.state.className === 'fas fa-bars') {
       className = 'fas fa-times'
       showMenu = true;
-    } else {
+    } 
+    else {
       className = 'fas fa-bars'
       showMenu = false
     }
