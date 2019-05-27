@@ -36,7 +36,7 @@ These are the required tools get started
 
 Find below, the links to User Interface
 
-* [Author's Haven](https://questioner-react.netlify.com/)
+* [Questioner](https://questioner-react.netlify.com/)
 
 To download dependencies 
 
