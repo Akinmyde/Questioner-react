@@ -68,6 +68,24 @@ input[type=email], input[type=password], input[type=text],  input[type=date], te
   width: 18%
 }
 
+.ssm {
+  margin: 3px;
+  padding: 3px;
+  width: 7%
+}
+
+.yes:hover {
+  background-color: green;
+}
+
+.no:hover {
+  background-color: rgba(145, 29, 29, 0.801);
+}
+
+.maybe:hover {
+  background-color: rgb(51, 51, 10)
+}
+
 .md {
   background-color: blue;
   color: white;
@@ -342,7 +360,7 @@ a {
 }
 
 .flex.full > div {
-  width: 50%;
+  width: 70%;
   margin: auto;
   margin-bottom: 20px;
 }
@@ -399,13 +417,6 @@ a {
   font-size: 16px
 }
 
-.show-menu, .hide-menu {
-  color: blue;
-  font-size: 30px !important;
-  display: none;
-  float: right !important;
-}
-
 .no-border {
   border: 0px gray !important;
   box-shadow: 0 0px 0px !important;
@@ -414,10 +425,52 @@ a {
   background: whitesmoke !important;
 }
 
+.menu {
+  float: right;
+  display: block;
+}
+
+.show-menu {
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+#check:checked ~ .menu {
+  display: block;
+}
+
+.sum {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: whitesmoke;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sum > div {
+  width: 25%;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 auto 50px;
+  background: white;
+}
+
 @media screen and (max-width: 992px) {
   .flex > div {
     flex: 50%;
   }
+
+  .sum > div {
+    width: 50%;
+  }
+  
   .container {
     width:65%;
   }
@@ -435,7 +488,10 @@ a {
       width: 25%;
   }
   .sm {
-    width: 30%;
+    width: 22%;
+  }
+  .ssm {
+    width: 20%;
   }
   h6 {
     font-size: 12px
@@ -452,13 +508,6 @@ a {
 }
 
 @media screen and (max-width: 600px) {
-  .show-menu, .hide-menu {
-    padding: 12px !important;
-    width: 30px !important;
-  }
-  .show-menu {
-    display: block;
-  }
   .header-right {
     display: none;
     float: left;
@@ -471,14 +520,25 @@ a {
     width: 50%;
     text-align: left;
   }
+  .menu {
+    display: none;
+  }
+  .show-menu {
+    cursor: pointer;
+    color: blue;
+    padding: 12px !important;
+    width: 30px !important;
+    display: block;
+    float: right !important;
+  }
   .flex > div {
     flex: 100%;
   }
   footer {
     padding: 0px 0px;
   }
+  .image-lg {
+    width: 100%;
+    float: none;
+  }
 } 
-
-@media screen and (max-width: 400px) {
-
-}

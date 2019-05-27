@@ -124,7 +124,9 @@ class SingleMeetup extends Component {
         {loading && <Loader />}
         <div className="flex full no-pad">
           <div>
-            <img className="image-lg card-image" src={meetup.images} alt="meetupimage" />
+            <div>
+              <img className="image-lg card-image" src={meetup.images} alt="meetupimage" />
+            </div>
             <h4><Link className="topic" to={`/meetup/${meetup.id}`}>{meetup.topic}</Link></h4>
             <h6 className="font12">{`@${meetup.location}`}</h6>
             <span className="text-holder">
@@ -136,10 +138,12 @@ class SingleMeetup extends Component {
               <Button onClick={() => { this.setState({ showQuestionForm: true }); }} className="btn font12 sm" id="add-question" value="Ask Question" />
             </span>
             <h4>
-              RSVP
-              <Link title="yes" id="yes" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-check" /></Link>
-              <Link title="no" id="no" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-times" /></Link>
-              <Link title="maybe" id="maybe" className="rsvp" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} to={`/meetups/${meetup.id}`}><i className="fas fa-not-equal" /></Link>
+              Are you going?
+              <p>
+                <Button className="btn font12 ssm yes" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} value="Yes" />
+                <Button className="btn font12 ssm no" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} value="No" />
+                <Button className="btn font12 ssm maybe" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} value="Maybe" />
+              </p>
             </h4>
           </div>
         </div>
