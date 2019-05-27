@@ -135,7 +135,7 @@ class SingleMeetup extends Component {
                 {questionLength > 1 && <li>{`${questionLength} Questions`}</li>}
                 {questionLength <= 1 && <li>{`${questionLength} Question`}</li>}
               </ul>
-              <Button onClick={() => { this.setState({ showQuestionForm: true }); }} className="btn font12 sm" id="add-question" value="Ask Question" />
+              <Button onClick={() => { this.setState({ showQuestionForm: true }); }} className="btn font12 sm" id="ask-question" value="Ask Question" />
             </span>
             <h4>
               Are you going?
