@@ -60,7 +60,7 @@ Test Account
 
 ```
 username: test@gmail.com
-password: testing
+password: 12345678
 ```
 
 ### How To Contribute
