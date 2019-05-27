@@ -50,17 +50,17 @@ describe('Meetups Page', () => {
 
   it('should test links', () => {
     const wrapper = shallow(<SingleMeetup />);
-    const linkYes = wrapper.find('#yes');
+    const linkYes = wrapper.find('.yes');
     linkYes.simulate('click');
-    const linkNo = wrapper.find('#no');
+    const linkNo = wrapper.find('.no');
     linkNo.simulate('click');
-    const linkMaybe = wrapper.find('#maybe');
+    const linkMaybe = wrapper.find('.maybe');
     linkMaybe.simulate('click');
   });
 
   it('should test button', () => {
     const wrapper = shallow(<SingleMeetup />);
-    const btnAdd = wrapper.find('#add-question');
+    const btnAdd = wrapper.find('#ask-question');
     btnAdd.simulate('click');
   });
 

@@ -8,30 +8,8 @@ exports[`Dashboard Page should render dashboard correctly 1`] = `
 <Fragment>
   <Loader />
   <div
-    className="flex"
+    className="sum"
   >
-    <div>
-      <p
-        className="lg font22"
-      >
-        <i
-          className="fas fa-user-plus"
-        >
-           Posts
-        </i>
-      </p>
-    </div>
-    <div>
-      <p
-        className="lg font22"
-      >
-        <i
-          className="fas fa-comment"
-        >
-           Comments
-        </i>
-      </p>
-    </div>
     <div>
       <p
         className="lg font22"
@@ -45,7 +23,7 @@ exports[`Dashboard Page should render dashboard correctly 1`] = `
     </div>
   </div>
   <div
-    className="flex full flex-buttom-space"
+    className="flex meetup-card"
   />
 </Fragment>
 `;

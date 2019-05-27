@@ -51,12 +51,10 @@ class Dashboard extends Form {
       ? (
         <React.Fragment>
           {loading && <Loader />}
-          <div className="flex">
-            <div><p className="lg font22"><i className="fas fa-user-plus">{`${totalPost} Posts`}</i></p></div>
-            <div><p className="lg font22"><i className="fas fa-comment">{`${totalComment} Comments`}</i></p></div>
+          <div className="sum">
             <div><p className="lg font22"><i className="fas fa-users">{`${upcomingMeetups.length} upcoming meetups`}</i></p></div>
           </div>
-          <div className="flex full flex-buttom-space">
+          <div className="flex meetup-card">
             {upcomingMeetups.map(meetup => (
               <div className="meetup-link" key={meetup.id}>
                 <div>

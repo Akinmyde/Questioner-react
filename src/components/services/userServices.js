@@ -18,14 +18,14 @@ const getTotalComment = async () => {
 const getUpcomingMeetups = async () => {
   const { data: result } = await http.get('meetups/upcoming', token);
   const { data } = result;
-  return data[0];
+  return data;
 };
 
 const userAnalytics = async () => {
   const totalPost = await getTotalQuestion();
   const totalComment = await getTotalComment();
   const upcomingMeetups = await getUpcomingMeetups();
-  return { totalPost, totalComment, upcomingMeetups: [upcomingMeetups] };
+  return { totalPost, totalComment, upcomingMeetups: upcomingMeetups };
 };
 
 export {
