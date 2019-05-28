@@ -11,7 +11,6 @@ Crowd-source questions for a meetup. Questioner helps the meetup organizer prior
 
 * Sign up to Questioner
 * Login to access features
-* Create a meetup
 * Get all meetups
 * Get a single meetup
 * Get all questions
