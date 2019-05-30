@@ -28,6 +28,10 @@ const userAnalytics = async () => {
   return { totalPost, totalComment, upcomingMeetups: upcomingMeetups };
 };
 
+const adminAnalytics = async () => {
+
+}
+
 export {
   getTotalQuestion,
   getTotalComment,

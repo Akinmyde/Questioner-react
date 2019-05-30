@@ -68,7 +68,6 @@ class Meetups extends Component {
                     {isAdmin && (
                       <React.Fragment>
                         <li title="delete"><Link onClick={() => {this.onDeleteClick(meetup.id)}} className="delete"><i className="fas fa-trash" /></Link></li>
-                        <li title="edit"><Link className="edit"><i className="fas fa-edit" /></Link></li>
                       </React.Fragment>
                     )}
                   </ul>

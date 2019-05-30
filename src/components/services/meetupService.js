@@ -32,10 +32,17 @@ const deleteMeetup = async (id) => {
   return data;
 };
 
+const createMeetup = async (meetupData) => {
+  const { data: result } = await http.post(`${url}`, meetupData);
+  const { data } = result;
+  return data;
+}
+
 export {
   getAllMeetups,
   getSingleMeetup,
   getMeetupQuestions,
   rsvps,
   deleteMeetup,
+  createMeetup
 };
