@@ -18,17 +18,31 @@ describe('Dashboard Page', () => {
     expect(wrapper.state('analytics')).toEqual({
       totalComment: '', totalPost: '', upcomingMeetups: [] });
     expect(wrapper.state('data')).toEqual({});
+    expect(wrapper.state('meetups')).toEqual(0);
   });
 
   it('should match snapshot doSubmit', () => {
-    const wrapper = renderer.create(<Dashboard isAdmin={false} />);
-    const inst = wrapper.getInstance();
+    const wrapper = shallow(<Dashboard isAdmin={false} />);
+    const inst = wrapper.instance();
+    expect(wrapper.state('loading')).toEqual(true);
     expect(inst.doSubmit()).toMatchSnapshot();
   });
 
   it('should match snapshot componentDidMount', () => {
-    const wrapper = renderer.create(<Dashboard isAdmin={false} />);
-    const inst = wrapper.getInstance();
+    const wrapper = shallow(<Dashboard isAdmin={false} />);
+    const inst = wrapper.instance();
     expect(inst.componentDidMount()).toMatchSnapshot();
+  });
+
+  it('should match snapshot showRsvps', () => {
+    const wrapper = shallow(<Dashboard isAdmin={false} />);
+    const inst = wrapper.instance();
+    expect(inst.showRsvps()).toMatchSnapshot();
+  });
+
+  it('should match snapshot hideRsvps', () => {
+    const wrapper = shallow(<Dashboard isAdmin={false} />);
+    const inst = wrapper.instance();
+    expect(inst.hideRsvps()).toMatchSnapshot();
   });
 });

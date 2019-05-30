@@ -4,6 +4,10 @@ exports[`Dashboard Page should match snapshot componentDidMount 1`] = `Promise {
 
 exports[`Dashboard Page should match snapshot doSubmit 1`] = `Promise {}`;
 
+exports[`Dashboard Page should match snapshot hideRsvps 1`] = `undefined`;
+
+exports[`Dashboard Page should match snapshot showRsvps 1`] = `undefined`;
+
 exports[`Dashboard Page should render dashboard correctly 1`] = `
 <Fragment>
   <Loader />
@@ -14,11 +18,32 @@ exports[`Dashboard Page should render dashboard correctly 1`] = `
       <p
         className="lg font22"
       >
-        <i
-          className="fas fa-users"
+        <Link
+          className="imp"
+          onClick={[Function]}
         >
-          0 upcoming meetups
-        </i>
+          <i
+            className="fas fa-users"
+          >
+            0 Top upcoming Meetups you may wish to attend
+          </i>
+        </Link>
+      </p>
+    </div>
+    <div>
+      <p
+        className="lg font22"
+      >
+        <Link
+          className="imp"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-users"
+          >
+            0 Meetups you plan to attend
+          </i>
+        </Link>
       </p>
     </div>
   </div>

@@ -3,6 +3,12 @@ import http from './httpService';
 
 const token = getTokenKey();
 
+const getRsvps = async () => {
+  const { data: result } = await http.get('/meetups/rsvps');
+  const { data } = result;
+  return data;
+};
+
 const getTotalQuestion = async () => {
   const { data: result } = await http.get('/questions/user', token);
   const { data } = result;
@@ -37,4 +43,5 @@ export {
   getTotalComment,
   getUpcomingMeetups,
   userAnalytics,
+  getRsvps
 };
