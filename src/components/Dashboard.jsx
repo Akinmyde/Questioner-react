@@ -86,26 +86,12 @@ class Dashboard extends Form {
       : (
         <React.Fragment>
           {loading && <Loader />}
-          <div className="flex">
+          <div className="sum">
             <div>
               <p className="lg font22">
                 <i className="fas fa-user-plus">All Meetups {this.state.meetups}</i>
                 <br />
                 <span id="totalmeetups" />
-              </p>
-            </div>
-            <div>
-              <p className="lg font22">
-                <i className="fas fa-user-plus"> All Comments</i>
-                <br />
-                <span id="totalcomments" />
-              </p>
-            </div>
-            <div>
-              <p className="lg font22">
-                <i className="fas fa-user-plus"> All Questions</i>
-                <br />
-                <span id="totalquestions" />
               </p>
             </div>
           </div>
