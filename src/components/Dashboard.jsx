@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import Form from './common/Form';
 import meetupSchema from '../schema/meetupSchema';
-import { createMeetup } from './services/meetupService';
+import { createMeetup, getAllMeetups } from './services/meetupService';
 import { userAnalytics } from './services/userServices';
 import exceptionHandler from '../helpers/exceptionHandler';
 import Loader from './common/Loader';
@@ -11,7 +12,7 @@ import Loader from './common/Loader';
 class Dashboard extends Form {
   constructor(props) {
     super(props);
-    this.state = { analytics: { totalComment: '', totalPost: '', upcomingMeetups: [] }, data: {}, loading: false };
+    this.state = { meetups: 0, analytics: { totalComment: '', totalPost: '', upcomingMeetups: [] }, data: {}, loading: false };
   }
 
   schema = { ...meetupSchema };
@@ -20,7 +21,8 @@ class Dashboard extends Form {
     this.setState({ loading: true });
     try {
       const analytics = await userAnalytics();
-      this.setState({ analytics });
+      const allMeetups = await getAllMeetups();
+      this.setState({ analytics, meetups: allMeetups.length });
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
@@ -33,6 +35,9 @@ class Dashboard extends Form {
     this.setState({ loading: true });
     try {
       const meetup = await createMeetup({ ...data });
+      if (meetup) {
+        toast.success('Your meetup has been added');
+      }
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
@@ -80,26 +85,13 @@ class Dashboard extends Form {
       )
       : (
         <React.Fragment>
-          <div className="flex">
+          {loading && <Loader />}
+          <div className="sum">
             <div>
               <p className="lg font22">
-                <i className="fas fa-user-plus"> All Meetups</i>
+                <i className="fas fa-user-plus">All Meetups {this.state.meetups}</i>
                 <br />
                 <span id="totalmeetups" />
-              </p>
-            </div>
-            <div>
-              <p className="lg font22">
-                <i className="fas fa-user-plus"> All Comments</i>
-                <br />
-                <span id="totalcomments" />
-              </p>
-            </div>
-            <div>
-              <p className="lg font22">
-                <i className="fas fa-user-plus"> All Questions</i>
-                <br />
-                <span id="totalquestions" />
               </p>
             </div>
           </div>
