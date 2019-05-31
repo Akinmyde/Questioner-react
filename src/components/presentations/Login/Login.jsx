@@ -7,7 +7,7 @@ import loginSchema from '../../../schema/loginSchema';
 class Login extends Form {
   constructor(props) {
     super(props);
-    this.state = { data: { email: '', password: '' }, loading: false };
+    this.state = { data: { email: '', password: '' } };
   }
 
   schema = { ...loginSchema };

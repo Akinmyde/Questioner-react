@@ -10,12 +10,12 @@ import SingleMeetup from './components/SingleMeetup';
 import Dashboard from './components/Dashboard';
 import Meetups from './components/Meetups';
 import ProtectedRoute from './components/common/protectedRoute';
-import Signup from './components/Signup';
 import 'react-toastify/dist/ReactToastify.css';
 import './Loader.css';
 import './App.css';
 import './Modal.css';
 import LoginContainer from './components/containers/LoginContainer';
+import SignupContainer from './components/containers/SignupContainer';
 import HomePage from './components/presentations/HomePage/HomePage';
 
 
@@ -39,7 +39,7 @@ class App extends Component {
           <Header />
           <Switch>
             <Route path="/login" component={LoginContainer} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/signup" component={SignupContainer} />
             <ProtectedRoute path="/meetups/:id" component={SingleMeetup} />
             <ProtectedRoute path="/dashboard" render={(props) => <Dashboard {...props} isAdmin={isAdmin} />} />
             <Route path="/meetups" component={Meetups} />

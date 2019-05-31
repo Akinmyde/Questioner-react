@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Form from './common/Form';
-import Loader from './common/Loader';
-import signupSchema from '../schema/signupSchema';
-import { register, getTokenKey } from './services/authService';
-import exceptionHandler from '../helpers/exceptionHandler';
+import Form from '../../common/Form';
+import Loader from '../../common/Loader';
+import signupSchema from '../../../schema/signupSchema';
 
 class Signup extends Form {
   constructor(props) {
@@ -21,23 +19,19 @@ class Signup extends Form {
 
   doSubmit = async () => {
     const { data } = this.state;
-    this.setState({ loading: true });
-    try {
-      await register(data);
-      window.location = '/';
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { signup } = this.props;
+    await signup(data, this.props);
   };
 
   render() {
-    if (getTokenKey()) return <Redirect to="/" />;
-    const { loading } = this.state;
+    const { auth, LoadingReducer } = this.props;
+    const { userId } = auth;
+    const { loader } = LoadingReducer;
+
+    if (userId) return <Redirect to="/" />;
     return (
       <React.Fragment>
-        {loading && <Loader />}
+        {loader && <Loader />}
         <div className="container">
           <div className="imgcontainer">
             <i className="fas fa-user-circle fa-5x" />

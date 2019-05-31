@@ -14,11 +14,6 @@ export const setToken = (result) => {
   localStorage.setItem(tokenKey, token);
 };
 
-const register = async (user) => {
-  const { data: result } = await http.post(`${url}/signup`, user);
-  return setToken(result);
-};
-
 const logout = () => {
   localStorage.removeItem(tokenKey);
   localStorage.removeItem('state');
@@ -50,7 +45,6 @@ const getCurrentUser = () => {
 };
 
 export {
-  register,
   logout,
   getTokenKey,
   decodeToken,

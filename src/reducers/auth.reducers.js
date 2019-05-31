@@ -10,6 +10,11 @@ const auth = (state = initialState, action) => {
         isAdmin: action.isAdmin, 
         userId: action.userId,
       };
+    case actiontype.SIGNUP_SUCCESS:
+        return {
+          ...state,
+          userId: action.userId,
+        };
     default:
       return state;
   }

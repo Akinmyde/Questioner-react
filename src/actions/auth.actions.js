@@ -10,6 +10,11 @@ export const loginSuccess = (isAdmin, userId) => ({
   userId,
 });
 
+export const signupSuccess = userId => ({
+  type: actionTypes.SIGNUP_SUCCESS,
+  userId,
+});
+
 export const login = (user, props) => {
   return async dispatch => {
     dispatch(contentLoading())
@@ -23,6 +28,24 @@ export const login = (user, props) => {
       const { state } = location;
       const path = state ? state.from.pathname : '/';
       history.push(path)
+    } catch (ex) {
+      return exceptionHandler(ex);
+    } finally {
+      dispatch(contentLoading())
+    }
+  }
+}
+
+export const signup = (user, props) => {
+  return async dispatch => {
+    dispatch(contentLoading())
+    try {
+      const { data: result } = await http.post('/auth/signup', user);
+      setToken(result)
+      const userId = getCurrentUser();
+      dispatch(signupSuccess(userId))
+      const { history } = props;
+      history.push('/')
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {

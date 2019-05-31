@@ -7,13 +7,11 @@ import Logo from '../../../public/images/new_logo.png';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { showMenu: true };
   }
 
   render() {
     const { auth } = this.props;
     const { userId } = auth;
-    const { showMenu } = this.state;
     return (
       <header>
         <div className="header">
@@ -39,16 +37,6 @@ class Header extends Component {
   }
 }
 
-
-Header.defaultProps = {
-  userId: propTypes.defaultProps = null,
-};
-
-Header.propTypes = {
-  userId: propTypes.number,
-};
-
 const mapStateToProps = ({auth}) => ({auth})
 
-export default connect(mapStateToProps, {})(Header)
-
+export default connect(mapStateToProps, {})(Header);
