@@ -26,12 +26,18 @@ exports[`Landing Page should render app correctly 1`] = `
     transition={[Function]}
   />
   <div>
-    <Header
-      userId={null}
-    />
+    <ConnectFunction />
     <Switch>
       <Route
-        component={[Function]}
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(Login)",
+            "type": [Function],
+          }
+        }
         path="/login"
       />
       <Route

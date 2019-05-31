@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Logo from '../../../public/images/new_logo.png';
 
 class Header extends Component {
@@ -10,7 +11,8 @@ class Header extends Component {
   }
 
   render() {
-    const { userId } = this.props;
+    const { auth } = this.props;
+    const { userId } = auth;
     const { showMenu } = this.state;
     return (
       <header>
@@ -21,12 +23,14 @@ class Header extends Component {
           <div className="menu">
             <Link to="/" />
             <Link to="/meetups">Meetups</Link>
-            {!userId && <Link className="active" id="login" to="/login">Login</Link>}
             {userId && (
             <React.Fragment>
               <Link id="dashboard" to="/dashboard">Dashboard</Link>
               <Link id="logout" className="active" to="/logout">Logout</Link>
             </React.Fragment>
+            )}
+            {!userId && (
+              <Link id="login" className="active" to="/login">Login</Link>
             )}
           </div>
         </div>
@@ -44,4 +48,7 @@ Header.propTypes = {
   userId: propTypes.number,
 };
 
-export default Header;
+const mapStateToProps = ({auth}) => ({auth})
+
+export default connect(mapStateToProps, {})(Header)
+

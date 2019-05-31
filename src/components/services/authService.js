@@ -8,7 +8,7 @@ const getTokenKey = () => localStorage.getItem(tokenKey);
 
 http.setTokenKey(getTokenKey());
 
-const setToken = (result) => {
+export const setToken = (result) => {
   const { data } = result;
   const { token } = data[0];
   localStorage.setItem(tokenKey, token);
@@ -19,13 +19,9 @@ const register = async (user) => {
   return setToken(result);
 };
 
-const login = async (user) => {
-  const { data: result } = await http.post(`${url}/login`, user);
-  return setToken(result);
-};
-
 const logout = () => {
   localStorage.removeItem(tokenKey);
+  localStorage.removeItem('state');
   window.location = '/';
 };
 
@@ -55,7 +51,6 @@ const getCurrentUser = () => {
 
 export {
   register,
-  login,
   logout,
   getTokenKey,
   decodeToken,

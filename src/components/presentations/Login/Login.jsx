@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Form from './common/Form';
-import Loader from './common/Loader';
-import loginSchema from '../schema/loginSchema';
-import { login, getCurrentUser } from './services/authService';
-import exceptionHandler from '../helpers/exceptionHandler';
+import Form from '../../common/Form';
+import Loader from '../../common/Loader';
+import loginSchema from '../../../schema/loginSchema';
 
 class Login extends Form {
   constructor(props) {
@@ -15,28 +13,20 @@ class Login extends Form {
   schema = { ...loginSchema };
 
   doSubmit = async () => {
+    const { login } = this.props;
     const { email, password } = this.state.data;
-    this.setState({ loading: true });
-    try {
-      await login({ username: email, password });
-      const { location } = this.props;
-      const { state } = location;
-      const path = state ? state.from.pathname : '/';
-      window.location = path;
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    await login({ username: email, password }, this.props);
   };
 
   render() {
-    if (getCurrentUser()) return <Redirect to="/" />;
+    const { auth, LoadingReducer } = this.props;
+    const { userId } = auth;
+    const { loader } = LoadingReducer;
 
-    const { loading } = this.state;
+    if (userId) return <Redirect to="/" />;
     return (
       <React.Fragment>
-        {loading && <Loader />}
+        {loader && <Loader />}
         <div className="container">
           <div className="imgcontainer">
             <i className="fas fa-user-circle fa-5x" />
