@@ -40,7 +40,7 @@
       "src/components/common/protectedRoute.jsx",
       "src/components/services",
       "src/helpers/exceptionHandler.js"
-  ]
+    ]
   },
   "repository": {
     "type": "git",
@@ -91,15 +91,20 @@
     "babel-polyfill": "^6.26.0",
     "enzyme": "^3.9.0",
     "enzyme-to-json": "^3.3.5",
+    "install": "^0.12.2",
     "jest-css-modules": "^2.0.0",
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "mini-css-extract-plugin": "^0.6.0",
+    "npm": "^6.9.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-toastify": "^4.1.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "url-loader": "^1.1.2"
   }
 }
