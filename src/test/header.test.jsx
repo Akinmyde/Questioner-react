@@ -9,20 +9,20 @@ describe('HomePage component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('always find footer', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('header'));
-  });
+  // it('always find footer', () => {
+  //   const wrapper = shallow(<Header />);
+  //   expect(wrapper.find('header'));
+  // });
 
-  it('always find a div tag', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('div'));
-  });
+  // it('always find a div tag', () => {
+  //   const wrapper = shallow(<Header />);
+  //   expect(wrapper.find('div'));
+  // });
 
-  it('always find react.fragment', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('React.Fragment'));
-  });
+  // it('always find react.fragment', () => {
+  //   const wrapper = shallow(<Header />);
+  //   expect(wrapper.find('React.Fragment'));
+  // });
 
   // it('always find function toggle menu', () => {
   //   const wrapper = shallow(<Header />);

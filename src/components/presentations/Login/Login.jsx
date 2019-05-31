@@ -19,12 +19,11 @@ class Login extends Form {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, LoadingReducer } = this.props;
     const { userId } = auth;
-    if (userId) return <Redirect to="/" />;
-
-    const { LoadingReducer } = this.props;
     const { loader } = LoadingReducer;
+
+    if (userId) return <Redirect to="/" />;
     return (
       <React.Fragment>
         {loader && <Loader />}
