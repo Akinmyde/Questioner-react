@@ -1,40 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { checkIsAdmin } from './services/authService';
-import { getAllMeetups, deleteMeetup } from './services/meetupService';
-import Loader from './common/Loader';
-import exceptionHandler from '../helpers/exceptionHandler';
-import Modal from './common/Modal';
+import Loader from '../../common/Loader';
+import Modal from '../../common/Modal';
 
 class Meetups extends Component {
   constructor(props) {
     super(props);
-    this.state = { meetups: [], isAdmin: false, loading: false, showModal: false, currentId: null };
+    this.state = { showModal: false, currentId: null };
   }
 
   async componentDidMount() {
-    this.setState({ loading: true });
-    try {
-      const isAdmin = checkIsAdmin();
-      const meetups = await getAllMeetups();
-      this.setState({ meetups, isAdmin });
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { getAllMeetups } = this.props;
+    await getAllMeetups();
   }
 
-  onDelete = async (id) => {
-    const { meetups } = this.state;
-    try {
-      const newMeetups = meetups.filter(x => x.id !== id) 
-      this.setState({ meetups: newMeetups, showModal: false });
-      await deleteMeetup(id);
-    } catch(ex) {
-      this.setState({ meetups });
-      exceptionHandler(ex);
-    }
+  onDelete = async (meetupId) => {
+    const { deleteMeetup } = this.props;
+    await deleteMeetup(meetupId);
+    this.setState({ showModal: false });
   };
 
   onDeleteClick = (id) => {
@@ -46,7 +29,11 @@ class Meetups extends Component {
   }
 
   render() {
-    const { meetups, isAdmin, loading, showModal, currentId } = this.state;
+    const { showModal, currentId } = this.state;
+    const { auth, LoadingReducer, meetups } = this.props;
+    const { isAdmin } = auth;
+    const { loader } = LoadingReducer;
+    const { meetupsData } = meetups;
     return (
       <React.Fragment>
         {showModal && <Modal
@@ -54,9 +41,9 @@ class Meetups extends Component {
           onDelete={() => {this.onDelete(currentId)}}
           onCancel={this.onCancel}
         /> }
-        {loading && <Loader />}
+        {loader && <Loader />}
         <div className="flex meetup-card">
-          {meetups.map(meetup => (
+          {meetupsData.map(meetup => (
             <div className="meetup-link" key={meetup.id}>
               <div>
                 <img className="image" src={meetup.images[0]} alt="logo" />
