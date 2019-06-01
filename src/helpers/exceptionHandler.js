@@ -1,12 +1,10 @@
 import { toast } from 'react-toastify';
 
 const exceptionHandler = (ex) => {
+  if (!ex.request) return null;
   const { status } = ex.request;
-  if (ex.response && status > 400 && status < 500) {
+  if (ex.response && status >= 400 && status < 500) {
     const { error } = ex.response.data;
-    if (error === 'Unauthorized') {
-      window.location = '/';
-    }
     return toast.error(error);
   }
   if (status > 500) {
