@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import Loader from '../../common/Loader';
 import validate from '../../../helpers/validator';
 import questionSchema from '../../../schema/questionSchema';
-import { upVote, downVote } from '../../services/voteServices';
 import { addQuestion } from '../../services/questionServices';
 import exceptionHandler from '../../../helpers/exceptionHandler';
 import Button from '../../common/Button';
@@ -38,7 +37,7 @@ class SingleMeetup extends Component {
       const { meetup, form, questions } = this.state;
       const questionData = { meetup: meetup.id, ...form };
       const data = await addQuestion(questionData);
-      const question = [data[0], ...questions];
+      const question = [data, ...questions];
       this.setState({ questions: question, showQuestionForm: false });
       toast.success('Your question has been added');
     } catch (ex) {
@@ -67,29 +66,13 @@ class SingleMeetup extends Component {
   }
 
   upVote = async (id) => {
-    this.setState({ loading: true });
-    try {
-      const question = await upVote(id);
-      this.updateQuestions(question);
-      toast.success('you have successfully up voted this question');
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { upVoteQuestion } = this.props;
+    await upVoteQuestion(id);
   };
 
   downVote = async (id) => {
-    this.setState({ loading: true });
-    try {
-      const question = await downVote(id);
-      this.updateQuestions(question);
-      toast.success('you have successfully down voted this question');
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+      const { downVoteQuestion } = this.props;
+      await downVoteQuestion(id);
   }
 
   rsvpUser = async (id, response) => {
@@ -109,17 +92,17 @@ class SingleMeetup extends Component {
     return (
       <React.Fragment>
         {loader && <Loader />}
-        {meetup.length > 0 && (
+        {meetup && (
           <div className="flex full no-pad">
           <div>
             <div>
-              <img className="image-lg card-image" src={meetup[0].images} alt="meetupimage" />
+              <img className="image-lg card-image" src={meetup.images} alt="meetupimage" />
             </div>
-            <h4><Link className="topic" to={`/meetup/${meetup[0].id}`}>{meetup[0].topic}</Link></h4>
-            <h6 className="font12">{`@${meetup[0].location}`}</h6>
+            <h4><Link className="topic" to={`/meetup/${meetup.id}`}>{meetup.topic}</Link></h4>
+            <h6 className="font12">{`@${meetup.location}`}</h6>
             <span className="text-holder">
               <ul className="details font12">
-                <li>{new Date(meetup[0].happeningon).toDateString()}</li>
+                <li>{new Date(meetup.happeningon).toDateString()}</li>
                 {questionLength > 1 && <li>{`${questionLength} Questions`}</li>}
                 {questionLength <= 1 && <li>{`${questionLength} Question`}</li>}
               </ul>
@@ -128,9 +111,9 @@ class SingleMeetup extends Component {
             <h4>
               Are you going?
               <p>
-                <Button className="btn font12 ssm yes" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'yes'); }} value="Yes" />
-                <Button className="btn font12 ssm no" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'no'); }} value="No" />
-                <Button className="btn font12 ssm maybe" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'maybe'); }} value="Maybe" />
+                <Button className="btn font12 ssm yes" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} value="Yes" />
+                <Button className="btn font12 ssm no" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} value="No" />
+                <Button className="btn font12 ssm maybe" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} value="Maybe" />
               </p>
             </h4>
           </div>
@@ -151,21 +134,16 @@ class SingleMeetup extends Component {
                 <ul className="details">
                   <li>{new Date(question.createdon).toDateString()}</li>
                   <li>
-                  <Link className="upvote" to={`/meetups/${meetup.id}`} onClick={() => { this.upVote(question.id); }}>
+                  <Link className="upvote" onClick={() => { this.upVote(question.id); }}>
                     <i className="fas fa-thumbs-up" />
                     <span className="num" />
                     {question.upvotes}
                   </Link>
                   </li>
                   <li>
-                    <Link className="downvote" to={`/meetups/${meetup.id}`} onClick={() => { this.downVote(question.id); }}>
+                    <Link className="downvote" onClick={() => { this.downVote(question.id); }}>
                       <i className="fas fa-thumbs-down" />
                       <span className="num">{question.downvotes}</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="comment" href="comment.html">
-                      <i className="fas fa-comment" />
                     </Link>
                   </li>
                 </ul>

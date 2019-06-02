@@ -1,5 +1,7 @@
 const actionTypes = {
  QUESTION_SUCCESS: 'QUESTION_SUCCESS',
+ UPVOTE_SUCCESS: 'UPVOTE_SUCCESS',
+ DOWNVOTE_SUCCESS: 'DOWNVOTE_SUCCESS',
 };
 
 export default actionTypes;

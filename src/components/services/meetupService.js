@@ -8,30 +8,6 @@ const getAllMeetups = async () => {
   return data;
 };
 
-const getSingleMeetup = async (id) => {
-  const { data: result } = await http.get(`${url}/${id}`);
-  const { data } = result;
-  return data;
-};
-
-const getMeetupQuestions = async (id) => {
-  const { data: result } = await http.get(`${url}/${id}/questions`);
-  const { data } = result;
-  return data;
-};
-
-const rsvps = async (id, response) => {
-  const { data: result } = await http.post(`${url}/${id}/rsvps`, response);
-  const { data } = result;
-  return data;
-};
-
-const deleteMeetup = async (id) => {
-  const { data: result } = await http.delete(`${url}/${id}`);
-  const { data } = result;
-  return data;
-};
-
 const createMeetup = async (meetupData) => {
   const { data: result } = await http.post(`${url}`, meetupData);
   const { data } = result;
@@ -40,9 +16,5 @@ const createMeetup = async (meetupData) => {
 
 export {
   getAllMeetups,
-  getSingleMeetup,
-  getMeetupQuestions,
-  rsvps,
-  deleteMeetup,
   createMeetup
 };

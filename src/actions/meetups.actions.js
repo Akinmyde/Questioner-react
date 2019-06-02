@@ -51,7 +51,7 @@ export const getSingleMeetup = meetupId => {
     try {
       const { data: result } = await http.get(`meetups/${meetupId}`);
       const { data } = result;
-      dispatch(SingleMeetupSuccess(data))
+      dispatch(SingleMeetupSuccess(data[0]))
     } catch (ex) {
       exceptionHandler(ex);
     } finally {
