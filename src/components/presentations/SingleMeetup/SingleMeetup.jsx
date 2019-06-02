@@ -1,37 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Loader from './common/Loader';
-import validate from '../helpers/validator';
-import questionSchema from '../schema/questionSchema';
-import { getSingleMeetup, getMeetupQuestions, rsvps } from './services/meetupService';
-import { upVote, downVote } from './services/voteServices';
-import { addQuestion } from './services/questionServices';
-import exceptionHandler from '../helpers/exceptionHandler';
-import Button from './common/Button';
-import Input from './common/Input';
+import Loader from '../../common/Loader';
+import validate from '../../../helpers/validator';
+import questionSchema from '../../../schema/questionSchema';
+import { upVote, downVote } from '../../services/voteServices';
+import { addQuestion } from '../../services/questionServices';
+import exceptionHandler from '../../../helpers/exceptionHandler';
+import Button from '../../common/Button';
+import Input from '../../common/Input';
 
 class SingleMeetup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meetup: [], questions: [], loading: false, showQuestionForm: false, form: { title: '', body: '' },
+      meetup: {}, questions: [], showQuestionForm: false, form: { title: '', body: '' },
     };
   }
 
   async componentDidMount() {
-    this.setState({ loading: true });
-    try {
-      const { params } = this.props.match;
-      const meetup = await getSingleMeetup(params.id);
-      this.setState({ meetup: meetup[0] });
-      const questions = await getMeetupQuestions(params.id);
-      this.setState({ questions });
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { getMeetupQuestions, getSingleMeetup } = this.props;
+    const { params } = this.props.match;
+    const id = parseInt(params.id, 10);
+    await getMeetupQuestions(id);
+    await getSingleMeetup(id);
   }
 
   handleChange = ({ currentTarget: input }) => {
@@ -101,37 +93,33 @@ class SingleMeetup extends Component {
   }
 
   rsvpUser = async (id, response) => {
-    this.setState({ loading: true });
-    try {
-      await rsvps(id, { response });
-      toast.success(`you responded with ${response} to this meetup`);
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { rsvps } = this.props;
+    await rsvps(id, { response });
   }
 
   render() {
-    const {
-      meetup, loading, questions, showQuestionForm, form,
-    } = this.state;
-    const { length: questionLength } = questions;
+    const { showQuestionForm, form } = this.state;
+    const { LoadingReducer, questions, meetups } = this.props;
+    const { loader } =  LoadingReducer;
+    const { singleMeetupData: meetup } = meetups;
+    const { questionsData } = questions
+    const { length: questionLength } = questionsData;
     const { title, body } = form;
 
     return (
       <React.Fragment>
-        {loading && <Loader />}
-        <div className="flex full no-pad">
+        {loader && <Loader />}
+        {meetup.length > 0 && (
+          <div className="flex full no-pad">
           <div>
             <div>
-              <img className="image-lg card-image" src={meetup.images} alt="meetupimage" />
+              <img className="image-lg card-image" src={meetup[0].images} alt="meetupimage" />
             </div>
-            <h4><Link className="topic" to={`/meetup/${meetup.id}`}>{meetup.topic}</Link></h4>
-            <h6 className="font12">{`@${meetup.location}`}</h6>
+            <h4><Link className="topic" to={`/meetup/${meetup[0].id}`}>{meetup[0].topic}</Link></h4>
+            <h6 className="font12">{`@${meetup[0].location}`}</h6>
             <span className="text-holder">
               <ul className="details font12">
-                <li>{new Date(meetup.happeningon).toDateString()}</li>
+                <li>{new Date(meetup[0].happeningon).toDateString()}</li>
                 {questionLength > 1 && <li>{`${questionLength} Questions`}</li>}
                 {questionLength <= 1 && <li>{`${questionLength} Question`}</li>}
               </ul>
@@ -140,21 +128,22 @@ class SingleMeetup extends Component {
             <h4>
               Are you going?
               <p>
-                <Button className="btn font12 ssm yes" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'yes'); }} value="Yes" />
-                <Button className="btn font12 ssm no" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'no'); }} value="No" />
-                <Button className="btn font12 ssm maybe" id="add-question" onClick={() => { this.rsvpUser(meetup.id, 'maybe'); }} value="Maybe" />
+                <Button className="btn font12 ssm yes" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'yes'); }} value="Yes" />
+                <Button className="btn font12 ssm no" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'no'); }} value="No" />
+                <Button className="btn font12 ssm maybe" id="add-question" onClick={() => { this.rsvpUser(meetup[0].id, 'maybe'); }} value="Maybe" />
               </p>
             </h4>
           </div>
         </div>
+        )}
         {!showQuestionForm && (
         <div id="questions" className="flex full flex-buttom-space">
-          {questions.length > 0 && (
+          {questionsData.length > 0 && (
             <div className="center no-border">
               <h1 id="title">Questions</h1>
             </div>
           )}
-          {questions.map(question => (
+          {questionsData.map(question => (
             <div className="space" key={question.id}>
               <h4><Link to="/">{question.title}</Link></h4>
               <p className="font16">{question.body}</p>

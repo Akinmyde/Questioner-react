@@ -2,6 +2,12 @@ import http from './httpService';
 
 const url = '/meetups';
 
+const getAllMeetups = async () => {
+  const { data: result } = await http.get(url);
+  const { data } = result;
+  return data;
+};
+
 const getSingleMeetup = async (id) => {
   const { data: result } = await http.get(`${url}/${id}`);
   const { data } = result;
@@ -20,6 +26,12 @@ const rsvps = async (id, response) => {
   return data;
 };
 
+const deleteMeetup = async (id) => {
+  const { data: result } = await http.delete(`${url}/${id}`);
+  const { data } = result;
+  return data;
+};
+
 const createMeetup = async (meetupData) => {
   const { data: result } = await http.post(`${url}`, meetupData);
   const { data } = result;
@@ -27,8 +39,10 @@ const createMeetup = async (meetupData) => {
 }
 
 export {
+  getAllMeetups,
   getSingleMeetup,
   getMeetupQuestions,
   rsvps,
+  deleteMeetup,
   createMeetup
 };
