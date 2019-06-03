@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import HomePage from '../components/presentations/HomePage/HomePage';
 
 describe('Login Page', () => {
-  it('should render login correctly', () => {
-    const homepage = shallow(<homepage />);
+  it('should render Homepage correctly', () => {
+    const homepage = shallow(<HomePage />);
     expect(homepage).toMatchSnapshot();
   });
 });

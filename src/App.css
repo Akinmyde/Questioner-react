@@ -190,7 +190,11 @@ p {
 
 p.lg {
   margin-bottom: 35px;
-  padding-top: 20px
+  padding-top: 20px;
+}
+
+.imp {
+  color: blue;
 }
 
 .text-holder {
