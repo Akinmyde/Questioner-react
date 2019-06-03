@@ -35,9 +35,7 @@
       ]
     },
     "coveragePathIgnorePatterns": [
-      "src/components/common/Logout.jsx",
-      "src/components/common/protectedRoute.jsx",
-      "src/helpers/exceptionHandler.js"
+      "src/actions"
     ]
   },
   "repository": {
