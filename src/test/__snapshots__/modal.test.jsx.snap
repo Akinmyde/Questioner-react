@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage component should match snapshot 1`] = `
+<div
+  className="modal show-modal"
+>
+  <div
+    className="modal-content"
+  >
+    <span
+      className="close-button"
+      onClick={[MockFunction]}
+    >
+      ×
+    </span>
+    <p
+      className="msg"
+    >
+      test
+    </p>
+    <div>
+      <button
+        className="btn-modal btn-yes"
+        onClick={[MockFunction]}
+      >
+        Yes
+      </button>
+      <button
+        className="btn-modal btn-no"
+        onClick={[MockFunction]}
+      >
+        No
+      </button>
+    </div>
+  </div>
+</div>
+`;

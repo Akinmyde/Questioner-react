@@ -1,8 +1,8 @@
 import actionTypes from '../constants/auth.constants';
-import http from '../components/services/httpService';
+import http from '../services/httpService';
 import exceptionHandler from '../helpers/exceptionHandler';
 import contentLoading from './loading.actions';
-import { setToken, getCurrentUser, checkIsAdmin } from '../components/services/authService';
+import { setToken, getCurrentUser, checkIsAdmin } from '../services/authService';
 
 export const loginSuccess = (isAdmin, userId) => ({
   type: actionTypes.LOGIN_SUCCESS,

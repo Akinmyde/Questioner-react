@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import 'babel-polyfill';
 import { ToastContainer } from 'react-toastify';
-import { checkIsAdmin } from './components/services/authService';
+import { checkIsAdmin } from './services/authService';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Logout from './components/common/Logout';
@@ -22,16 +22,10 @@ import DashBoardContainer from './components/containers/DashBoardContainer';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isAdmin: false };
-  }
-
-  componentDidMount() {
-    const isAdmin = checkIsAdmin();
-    this.setState({ isAdmin });
+    this.state = {};
   }
 
   render() {
-    const { isAdmin } = this.state;
     return (
       <React.Fragment>
         <ToastContainer />
@@ -41,7 +35,7 @@ class App extends Component {
             <Route path="/login" component={LoginContainer} />
             <Route path="/signup" component={SignupContainer} />
             <ProtectedRoute path="/meetups/:id" component={SingleMeetupContainer} />
-            <ProtectedRoute path="/dashboard" render={(props) => <DashBoardContainer {...props} isAdmin={isAdmin} />} />
+            <ProtectedRoute path="/dashboard" component={DashBoardContainer} />
             <Route path="/meetups" component={MeetupsContainer} />
             <Route path="/logout" component={Logout} />
             <Route path="/not-found" component="not-found" />

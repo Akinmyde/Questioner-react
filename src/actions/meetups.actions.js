@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import actionTypes from '../constants/meetups.constants';
-import http from '../components/services/httpService';
+import http from '../services/httpService';
 import exceptionHandler from '../helpers/exceptionHandler';
 import contentLoading from './loading.actions';
 

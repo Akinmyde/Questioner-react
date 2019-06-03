@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page should render meetups correctly 1`] = `
+<Fragment>
+  <div
+    className="flex meetup-card"
+  />
+</Fragment>
+`;

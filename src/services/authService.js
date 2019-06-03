@@ -11,7 +11,7 @@ http.setTokenKey(getTokenKey());
 export const setToken = (result) => {
   const { data } = result;
   const { token } = data[0];
-  localStorage.setItem(tokenKey, token);
+  return localStorage.setItem(tokenKey, token);
 };
 
 const logout = () => {
