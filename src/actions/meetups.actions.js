@@ -19,6 +19,21 @@ export const deleteSuccess = meetupId => ({
   meetupId,
 });
 
+export const upcomingMeetupsSuccess = data => ({
+  type: actionTypes.UPCOMING_MEETUPS_SUCCESS,
+  data,
+});
+
+export const rsvpMeetupsSuccess = data => ({
+  type: actionTypes.RSVP_MEETUPS_SUCCESS,
+  data,
+});
+
+export const createMeetupsSuccess = data => ({
+  type: actionTypes.CREATE_MEETUPS_SUCCESS,
+  data,
+});
+
 export const getAllMeetups = () => {
   return async dispatch => {
     dispatch(contentLoading())
@@ -66,6 +81,53 @@ export const rsvps = (id, response) => {
     try {
       await http.post(`meetups/${id}/rsvps`, response);
       toast.success(`you responded with ${response} to this meetup`);
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(contentLoading());
+    }
+  }
+}
+
+export const fetchUpcomingMeetups = () => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data: result } = await http.get('meetups/upcoming');
+      const { data } = result;
+      dispatch(upcomingMeetupsSuccess(data));
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(contentLoading());
+    }
+  }
+}
+
+export const fetchRsvpMeetups = () => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data: result } = await http.get('meetups/rsvps');
+      const { data } = result;
+      dispatch(rsvpMeetupsSuccess(data));
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(contentLoading());
+    }
+  }
+}
+
+export const createMeetup = meetupData => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data: result } = await http.post('meetups', meetupData);
+      const { data } = result;
+      console.log(data, 'our data');
+      dispatch(createMeetupsSuccess(data[0]));
+      toast.success("Your meetup has been added");
     } catch (ex) {
       exceptionHandler(ex);
     } finally {

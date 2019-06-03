@@ -6,7 +6,6 @@ import { checkIsAdmin } from './components/services/authService';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Logout from './components/common/Logout';
-import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/common/protectedRoute';
 import 'react-toastify/dist/ReactToastify.css';
 import './Loader.css';
@@ -17,6 +16,7 @@ import SignupContainer from './components/containers/SignupContainer';
 import HomePage from './components/presentations/HomePage/HomePage';
 import MeetupsContainer from './components/containers/MeetupsContainer';
 import SingleMeetupContainer from './components/containers/SingleMeetupContainer';
+import DashBoardContainer from './components/containers/DashBoardContainer';
 
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
             <Route path="/login" component={LoginContainer} />
             <Route path="/signup" component={SignupContainer} />
             <ProtectedRoute path="/meetups/:id" component={SingleMeetupContainer} />
-            <ProtectedRoute path="/dashboard" render={(props) => <Dashboard {...props} isAdmin={isAdmin} />} />
+            <ProtectedRoute path="/dashboard" render={(props) => <DashBoardContainer {...props} isAdmin={isAdmin} />} />
             <Route path="/meetups" component={MeetupsContainer} />
             <Route path="/logout" component={Logout} />
             <Route path="/not-found" component="not-found" />
