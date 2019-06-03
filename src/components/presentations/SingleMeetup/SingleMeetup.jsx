@@ -4,8 +4,6 @@ import { toast } from 'react-toastify';
 import Loader from '../../common/Loader';
 import validate from '../../../helpers/validator';
 import questionSchema from '../../../schema/questionSchema';
-import { addQuestion } from '../../services/questionServices';
-import exceptionHandler from '../../../helpers/exceptionHandler';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 
@@ -13,7 +11,7 @@ class SingleMeetup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meetup: {}, questions: [], showQuestionForm: false, form: { title: '', body: '' },
+      showQuestionForm: false, form: { title: '', body: '' },
     };
   }
 
@@ -21,6 +19,7 @@ class SingleMeetup extends Component {
     const { getMeetupQuestions, getSingleMeetup } = this.props;
     const { params } = this.props.match;
     const id = parseInt(params.id, 10);
+    this.setState({ id });
     await getMeetupQuestions(id);
     await getSingleMeetup(id);
   }
@@ -32,19 +31,11 @@ class SingleMeetup extends Component {
   };
 
   submitQuestionForm = async () => {
-    this.setState({ loading: true });
-    try {
-      const { meetup, form, questions } = this.state;
-      const questionData = { meetup: meetup.id, ...form };
-      const data = await addQuestion(questionData);
-      const question = [data, ...questions];
-      this.setState({ questions: question, showQuestionForm: false });
-      toast.success('Your question has been added');
-    } catch (ex) {
-      exceptionHandler(ex);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const { id } = this.state;
+    const { form } = this.state;
+    const questionData = { meetup: id, ...form }
+    const { addQuestion } = this.props;
+    await addQuestion(questionData);
   };
   handleSaveQuestion = (e) => {
     e.preventDefault();
@@ -54,16 +45,13 @@ class SingleMeetup extends Component {
     return this.submitQuestionForm();
   };
 
-  handleCancel = () => {
+  handleCancel = async () => {
+    const { id } = this.state;
+    const { getMeetupQuestions, getSingleMeetup } = this.props;
+    await getMeetupQuestions(id);
+    await getSingleMeetup(id);
     this.setState({ showQuestionForm: false });
   };
-
-  updateQuestions = (question) => {
-    const { questions: currentQuestion } = this.state;
-    const questions = currentQuestion.filter(x => x.id !== question.id);
-    const updatedQuestions = [question, ...questions];
-    this.setState({ questions: updatedQuestions });
-  }
 
   upVote = async (id) => {
     const { upVoteQuestion } = this.props;

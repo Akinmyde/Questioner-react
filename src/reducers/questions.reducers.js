@@ -41,11 +41,15 @@ const questions = (state = initialState, action) => {
         questionsData: upvoteQuestions(state.questionsData, action.upvotes, action.id),
       }
     case actionTypes.DOWNVOTE_SUCCESS: 
-    console.log(action.id, '.......id......')
-    return {
-      ...state,
-      questionsData: downvoteQuestions(state.questionsData, action.downvotes, action.id),
-    }
+      return {
+        ...state,
+        questionsData: downvoteQuestions(state.questionsData, action.downvotes, action.id),
+      }
+    case actionTypes.ADD_QUESTION_SUCCESS: 
+      return {
+        ...state,
+        questionsData: state.questionsData.push(action.data),
+      }
     default: 
       return state;
   } 

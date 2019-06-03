@@ -53,7 +53,15 @@ exports[`Landing Page should render app correctly 1`] = `
         path="/signup"
       />
       <ProtectedRoute
-        component={[Function]}
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(SingleMeetup)",
+            "type": [Function],
+          }
+        }
         path="/meetups/:id"
       />
       <ProtectedRoute

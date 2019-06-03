@@ -2,7 +2,15 @@
 
 exports[`HomePage component should match snapshot 1`] = `
 <ProtectedRoute
-  component={[Function]}
+  component={
+    Object {
+      "$$typeof": Symbol(react.memo),
+      "WrappedComponent": [Function],
+      "compare": null,
+      "displayName": "Connect(SingleMeetup)",
+      "type": [Function],
+    }
+  }
   path="/meetups/:id"
 />
 `;

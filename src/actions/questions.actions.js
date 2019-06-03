@@ -21,6 +21,11 @@ export const downvoteSuccess = (downvotes, id) => ({
   id
 });
 
+export const addQuestionSuccess = data => ({
+  type: actionTypes.ADD_QUESTION_SUCCESS,
+  data,
+});
+
 export const getMeetupQuestions = id => {
   return async dispatch => {
     dispatch(contentLoading())
@@ -58,6 +63,23 @@ export const downVoteQuestion = id => {
       toast.success('you have successfully down vote this question');
     } catch (ex) {
       exceptionHandler(ex);
+    }
+  }
+}
+
+export const addQuestion = questionData => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data: result } = await http.post('/questions', questionData);
+      const { data } = result;
+      console.log(data);
+      dispatch(addQuestionSuccess(data[0]));
+      toast.success('Your question has been added');
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(contentLoading())
     }
   }
 }
